@@ -40,13 +40,11 @@ public class MainActivity extends Activity {
 		super.onPause();
 	}
 
-<<<<<<< HEAD
 	@Override
 	public void onStop() {
-		Log.d(TAG, "pausing mainActivity");
+		Log.d(TAG, "Stopping mainActivity");
 		super.onStop();
 	}
-=======
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         
@@ -54,15 +52,7 @@ public class MainActivity extends Activity {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
->>>>>>> FETCH_HEAD
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
