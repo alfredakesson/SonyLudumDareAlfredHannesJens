@@ -38,22 +38,31 @@ public class SquareEntity extends Entity {
 	}
 
 	public boolean isPressed(Point hitPt) {
-
+		
 		int height= bitmap.getHeight();
 		int width = bitmap.getWidth();
 		
 		int yHit = hitPt.y;
 		int xHit = hitPt.x;
 		
-		if(xHit < x)
+		if(xHit < x) {
+			Log.d(TAG, "is pressed? 1");			
 			return false;
-		else if(xHit > x + height)
+		}
+		else if(xHit > x + height) {
+			Log.d(TAG, "is pressed? 2");
 			return false;
-		else if(yHit < y)
+		}
+		else if(yHit < y) {
+			Log.d(TAG, "is pressed? 3");			
 			return false;
-		else if(yHit > y + width)
+		}
+		else if(yHit > y + width) {
+			Log.d(TAG, "is pressed? 4");
 			return false;
+		}
 		else
+			Log.d(TAG, "is pressed? TRUE");
 			return true;
 	}
 }

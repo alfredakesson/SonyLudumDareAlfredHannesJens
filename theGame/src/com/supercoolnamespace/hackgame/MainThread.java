@@ -106,7 +106,7 @@ public class MainThread extends Thread {
 	}
 	
 	public void goToGame(){
-		currentScreen = null;
+		currentScreen = gameLoop;
 	}
 
 	public void touch(MotionEvent event) {
