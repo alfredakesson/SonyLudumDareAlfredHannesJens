@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Point;
 import android.util.Log;
+import android.view.Display;
+import android.view.WindowManager;
 import aurelienribon.tweenengine.Tween;
 import aurelienribon.tweenengine.TweenManager;
 import entities.GroundEntity;
@@ -23,12 +25,22 @@ public class GameLoop {
 
 	public GameLoop(Context context) {
 
+		WindowManager wm = (WindowManager) context
+				.getSystemService(Context.WINDOW_SERVICE);
+		Display display = wm.getDefaultDisplay();
 
+		Point displaySize = new Point();
+		display.getSize(displaySize);
+		
 		Tween.registerAccessor(Entity.class, new EntityTweener());
 		// Tween.registerAccessor(SquareEntity.class, new EntityTweener());
 		manager = new TweenManager();
 
 		square = new SquareEntity(context, 0, 0);
+		
+		//double xMove = getMoveLengthX(square, 0.5);
+		//double yMove = getMoveLengthY(square, 0.5);
+		
 		Tween.to(square, EntityTweener.POSITION_XY, 4f).target(100, 200)
 				.start(manager);
 
@@ -59,15 +71,15 @@ public class GameLoop {
 	
 	
 	//not working yet!
-	public float getMoveLengthX(Entity e, float moveVal){
-		Log.d(TAG, "getMoveLen " + e.getX());// + " " + displaySize.x); 
-		float normalizedSize = e.getX() / displaySize.x;
+	public double getMoveLengthX(Entity e, double d){
+		Log.d(TAG, "getMoveLen " + e.getX()); 
+		double normalizedSize = e.getX() / displaySize.x;
 		//Log.d(TAG, "" + normalizedSize);
-		return normalizedSize * moveVal;
+		return normalizedSize * d;
 	}
 	
-	public float getMoveLengthY(Entity e, float moveVal){
-		float normalizedSize = e.getY() / displaySize.y;
+	public double getMoveLengthY(Entity e, double moveVal){
+		double normalizedSize = e.getY() / displaySize.y;
 		return normalizedSize * moveVal;
 	}
 
