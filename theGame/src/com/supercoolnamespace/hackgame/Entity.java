@@ -7,6 +7,11 @@ public abstract class Entity {
 	protected float y; 
 	protected float rotation;
 	
+	public Entity(float x, float y){
+		this.x = x;
+		this.y = y;
+	}
+	
 
 	public abstract void draw(Canvas c);
 
