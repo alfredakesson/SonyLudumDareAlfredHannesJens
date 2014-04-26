@@ -52,14 +52,19 @@ public class MainGamePanel extends SurfaceView implements
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-		if (event.getAction() == MotionEvent.ACTION_DOWN) {
+		
+		thread.touch(event);
+		
+		
+		
+		/*if (event.getAction() == MotionEvent.ACTION_DOWN) {
 			if (event.getY() > getHeight() - 50) {
 				thread.setRunning(false);
 				((Activity) getContext()).finish();
 			} else {
 				Log.d(TAG, "Coords: x=" + event.getX() + ",y=" + event.getY());
 			}
-		}
+		}*/
 		return super.onTouchEvent(event);
 	}
 

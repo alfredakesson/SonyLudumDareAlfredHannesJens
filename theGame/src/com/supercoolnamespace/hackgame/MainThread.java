@@ -1,11 +1,15 @@
 package com.supercoolnamespace.hackgame;
 
+import intro.IntroScreen;
+
 import java.util.Calendar;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Movie;
 import android.graphics.Paint;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import aurelienribon.tweenengine.Tween;
 import aurelienribon.tweenengine.TweenManager;
@@ -20,6 +24,10 @@ public class MainThread extends Thread {
 
 	private Paint backgroundPaint;
 
+	private IntroScreen introScreen;
+	
+	private Screen currentScreen;
+
 	public MainThread(SurfaceHolder surfaceHolder, MainGamePanel gamePanel) {
 		super();
 		this.surfaceHolder = surfaceHolder;
@@ -29,6 +37,8 @@ public class MainThread extends Thread {
 		backgroundPaint.setColor(Color.BLACK);
 
 		gameLoop = new GameLoop(gamePanel.getContext());
+
+		introScreen = new IntroScreen();
 
 	}
 
@@ -56,10 +66,17 @@ public class MainThread extends Thread {
 				c = surfaceHolder.lockCanvas();
 				synchronized (surfaceHolder) {
 					if (c != null) {
-						c.drawRect(0, 0, c.getWidth(), c.getHeight(),
-								backgroundPaint);
-						oldTime = System.nanoTime();
-						gameLoop.draw(c, (float) deltaTime / 1000000000);
+
+						if (!introScreen.isDead()) {
+							oldTime = System.nanoTime();
+							introScreen.draw(c, (float) deltaTime / 1000000000);
+						} else {
+							c.drawRect(0, 0, c.getWidth(), c.getHeight(),
+									backgroundPaint);
+							oldTime = System.nanoTime();
+							gameLoop.draw(c, (float) deltaTime / 1000000000);
+						}
+
 					} else {
 						System.out.println("LOST FRAME");
 					}
@@ -72,6 +89,13 @@ public class MainThread extends Thread {
 			}
 		}
 		Log.d(TAG, "Gameloop executed " + tickCount + " times.");
+	}
+
+	public void touch(MotionEvent event) {
+		if(!introScreen.isDead()){
+			introScreen.touch(event);
+		}
+		
 	}
 
 }
