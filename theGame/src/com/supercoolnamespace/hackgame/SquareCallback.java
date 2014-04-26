@@ -10,9 +10,9 @@ public class SquareCallback implements TweenCallback {
 	private World world;
 	short iter = 0;
 
-	public SquareCallback(SquareEntity se, World world) {
+	public SquareCallback(SquareEntity squareEntity, World world) {
 		super();
-		this.se = se;
+		this.se = squareEntity;
 		this.world = world;
 	}
 

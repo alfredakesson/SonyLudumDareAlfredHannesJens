@@ -5,25 +5,30 @@ import java.util.Random;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Point;
 import android.util.Log;
 import aurelienribon.tweenengine.Tween;
 import aurelienribon.tweenengine.TweenCallback;
 import aurelienribon.tweenengine.TweenManager;
 
 public abstract class World {
-	protected LinkedList<SquareEntity> sq;
+	protected Point displaySize;
+	protected LinkedList<SquareEntity> squareList;
 	protected TweenManager manager;
 	protected Context context;
 	
 	public void removeTopSquare() {
-		sq.removeFirst();
+		squareList.removeFirst();
 	}
+	
+	public abstract int getStartPosX();
+	public abstract int getStartPosY();
 	
 	
 	public void newSquare() {
-		SquareEntity temp = new SquareEntity(context, 400, 0);
-		sq.add(temp);
-		Tween.to(temp, EntityTweener.POSITION_XY, 0.5f).target(400, 200)
+		SquareEntity temp = new SquareEntity(context, getStartPosX(), 0);
+		squareList.add(temp);
+		Tween.to(temp, EntityTweener.POSITION_XY, 0.5f).target(getStartPosX(), getStartPosY())
 				.repeat(5, 1.0f).start(manager)
 				.setCallback(new SquareCallback(temp, this))
 				.setCallbackTriggers(TweenCallback.ANY);
@@ -31,10 +36,10 @@ public abstract class World {
 
 
 	public void drawAllSquares(Canvas c, float delta) {
-		for(SquareEntity square : sq) {
+		for(SquareEntity square : squareList) {
 			square.draw(c);
 		}
-		Log.d("RAND", "sq size: "+ sq.size());
+		Log.d("RAND", "sq size: "+ squareList.size());
 		manager.update(delta);
 		
 	}
