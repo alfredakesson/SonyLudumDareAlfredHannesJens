@@ -8,7 +8,7 @@ import com.supercoolnamespace.hackgame.Entity;
 
 public class SunEntity extends Entity{
 	
-	private final int SUN_RADIUS = 30;
+	private final int SUN_RADIUS = 60;
 	
 	private Paint paint;
 	
@@ -28,7 +28,7 @@ public class SunEntity extends Entity{
 	public void draw(Canvas c) {
 		
 
-		c.drawCircle((float) (width * Math.sin(rotation)) + width/2, (float) (height * Math.cos(rotation)) + height/2 , SUN_RADIUS, paint);
+		c.drawCircle((float) ((width-SUN_RADIUS) * Math.sin(rotation)) + width, (float) ((height-SUN_RADIUS) * Math.cos(rotation)) + height , SUN_RADIUS, paint);
 		
 	}
 

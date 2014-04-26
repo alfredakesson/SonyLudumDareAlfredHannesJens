@@ -44,7 +44,7 @@ public class GameLoop {
 		Tween.to(square, EntityTweener.POSITION_XY, 4f).target(100, 200)
 				.start(manager);
 
-		sunEntity = new SunEntity(768/2, 1280/2);
+		sunEntity = new SunEntity(displaySize.x/2, displaySize.y/2);
 		groundEntity = new GroundEntity(200, 0, 100, 1600);
 
 		/*Timeline.createSequence()
@@ -61,8 +61,6 @@ public class GameLoop {
 		sunEntity.setRotation(sunEntity.getRotation() + delta*0.1f);
 		manager.update(0.01f);
 		sunEntity.draw(c);
-		
-		sunEntity.setRotation(sunEntity.getRotation() + delta*0.1f);
 		
 		
 		groundEntity.draw(c);
