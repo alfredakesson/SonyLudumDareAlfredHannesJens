@@ -1,18 +1,14 @@
 package com.supercoolnamespace.hackgame;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Random;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Point;
-import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
 import aurelienribon.tweenengine.Tween;
-import aurelienribon.tweenengine.TweenCallback;
 import aurelienribon.tweenengine.TweenManager;
 import entities.GroundEntity;
 import entities.HouseEntity;
@@ -54,7 +50,8 @@ public class GameLoop {
 	public GameLoop(Context context) {
 		this.context = context;
 		
-		upperWorld = new UpperWorld(context);
+		upperWorld = new UpperWorld(context, displaySize);
+		lowerWorld = new LowerWorld(context, displaySize);
 		
 		// Get the screen size of the device
 		WindowManager wm = (WindowManager) context
@@ -95,14 +92,7 @@ public class GameLoop {
 		houseEntity = new entities.HouseEntity(100, 100, 50, 50);
 		colorManager = new TweenManager();
 
-		
-		///////// UPPER WORLD //////////////
-		//
 
-
-		
-		
-		///////// LOWER WORLD //////////////
 		
 		
 	}
@@ -131,6 +121,7 @@ public class GameLoop {
 
 		
 		upperWorld.drawAllSquares(c, delta);
+		lowerWorld.drawAllSquares(c, delta);
 
 		colorManager.update(delta);
 
