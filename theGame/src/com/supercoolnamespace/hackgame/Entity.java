@@ -1,13 +1,13 @@
 package com.supercoolnamespace.hackgame;
 
-import android.content.Context;
+import android.graphics.Canvas;
 
 public abstract class Entity {
-	float x; 
-	float y; 
+	protected float x; 
+	protected float y; 
+	protected float rotation;
 	
-
-	public abstract void draw(Context context);
+	public abstract void draw(Canvas c);
 
 	public void setX(float newX){
 		this.x = newX;
@@ -23,6 +23,15 @@ public abstract class Entity {
 	
 	public float getY(){
 		return y;
+	}
+
+	public float getRotation() {
+		// TODO Auto-generated method stub
+		return rotation;
+	}
+
+	public void setRotation(float newRotation) {
+		this.rotation = newRotation;
 	}
 
 }

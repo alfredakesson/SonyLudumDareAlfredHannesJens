@@ -7,6 +7,7 @@ public class EntityTweener implements TweenAccessor<Entity> {
 	public static final int POSITION_X = 1;
 	public static final int POSITION_Y = 2;
 	public static final int POSITION_XY = 3;
+	public static final int ROTATION = 4;
 
 	@Override
 	public int getValues(Entity target, int tweenType, float[] returnValues) {
@@ -22,6 +23,9 @@ public class EntityTweener implements TweenAccessor<Entity> {
 			returnValues[0] = target.getX();
 			returnValues[1] = target.getY();
 			return 2;
+			
+		case ROTATION:
+			returnValues[0] = target.getRotation();
 
 		default:
 			return -1;
@@ -41,6 +45,9 @@ public class EntityTweener implements TweenAccessor<Entity> {
 			target.setX(newValues[0]);
 			target.setY(newValues[1]);
 			break;
+			
+		case ROTATION:
+			target.setRotation(newValues[0]);
 		default:
 			break;
 		}
