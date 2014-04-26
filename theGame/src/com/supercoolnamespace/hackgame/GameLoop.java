@@ -1,6 +1,8 @@
 package com.supercoolnamespace.hackgame;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -42,9 +44,14 @@ public class GameLoop {
 	private ArrayList<SkyBox> skyboxes;
 	private ArrayList<HouseEntity> houses;
 
-	private SquareEntity controlSquare;
-	private ArrayList<Entity> squaresToSpawnList = new ArrayList<Entity>();
+	private Context context;
+	
+	private LinkedList<SquareEntity> sq = new LinkedList<SquareEntity>();
 
+	public void removeTopSqure(){
+		sq.removeFirst();
+	}
+	
 	public GameLoop(Context context) {
 
 		// Get the screen size of the device
@@ -83,22 +90,18 @@ public class GameLoop {
 		manager = new TweenManager();
 		Tween.registerAccessor(Entity.class, new EntityTweener());
 
-		tweenCallback = new TweenCallback() {
+		this.context = context;
+		newSqure();
+		
+		
+		
+	}
 
-			@Override
-			public void onEvent(int arg0, BaseTween<?> arg1) {
-				Log.d(TAG,"Här ska du va" + arg0);
-				if(arg0 == 2)
-					controlSquare.update(200f);
-			}
-		};
-		
-		controlSquare = new SquareEntity(context, 400, 0);
-		Tween.to(controlSquare, EntityTweener.POSITION_XY, 1.0f)
-				.target(400,200).repeat(Tween.INFINITY, 2.0f).start(manager).setCallback(tweenCallback).setCallbackTriggers(TweenCallback.ANY);
-		
-		
-		
+	public void newSqure() {
+		SquareEntity temp = new SquareEntity(context, 400, 0);
+		sq.add(temp);
+		Tween.to(temp, EntityTweener.POSITION_XY, 0.5f)
+				.target(400,200).repeat(5, 1.0f).start(manager).setCallback(new SquareCallback(temp,this)).setCallbackTriggers(TweenCallback.ANY);
 	}
 
 	public void draw(Canvas c, float delta) {
@@ -137,7 +140,10 @@ public class GameLoop {
 		}
 		
 		
-		controlSquare.draw(c);
+		for (SquareEntity sque : sq) {
+			sque.draw(c);
+			
+		}
 		manager.update(delta);
 		//redraw();
 	}
