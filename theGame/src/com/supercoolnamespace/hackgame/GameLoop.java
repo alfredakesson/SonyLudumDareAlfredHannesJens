@@ -1,7 +1,10 @@
 package com.supercoolnamespace.hackgame;
 
+import java.util.ArrayList;
+
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.util.Log;
 import android.view.Display;
@@ -9,6 +12,7 @@ import android.view.WindowManager;
 import aurelienribon.tweenengine.Tween;
 import aurelienribon.tweenengine.TweenManager;
 import entities.GroundEntity;
+import entities.SkyBox;
 import entities.SunEntity;
 
 
@@ -22,6 +26,8 @@ public class GameLoop {
 	private SunEntity sunEntity;
 	
 	private GroundEntity groundEntity;
+	
+	private ArrayList<SkyBox> skyboxes;
 
 	public GameLoop(Context context) {
 
@@ -45,25 +51,37 @@ public class GameLoop {
 				.start(manager);
 
 		sunEntity = new SunEntity(displaySize.x/2, displaySize.y/2);
-		groundEntity = new GroundEntity(200, 0, 100, 1600);
+		groundEntity = new GroundEntity(displaySize.x/2, 0, 100, displaySize.y);
 
 		/*Timeline.createSequence()
 				.push(Tween.to(sunEntity, EntityTweener.POSITION_XY, 1f)
 						.target(0, 400))
 				.push(Tween.to(sunEntity, EntityTweener.POSITION_XY, 1f)
 						.target(400, 800)).repeatYoyo(4, 0.0f).start(manager);*/
+		skyboxes = new ArrayList<SkyBox>();
+		
+		skyboxes.add(new SkyBox(0, 0, displaySize.x/2, displaySize.y, Color.rgb(167, 199, 240)));
+		skyboxes.add(new SkyBox(displaySize.x/2, 0, displaySize.x/2, displaySize.y, Color.rgb(24, 8, 102)));
 
 	}
 
 	public void draw(Canvas c, float delta) {
+		
+		for(SkyBox sb: skyboxes){
+			sb.draw(c);
+		}
+
+		
+		
 		square.draw(c);
 		manager.update(delta);
-		sunEntity.setRotation(sunEntity.getRotation() + delta*0.1f);
+		sunEntity.setRotation(sunEntity.getRotation() + delta*0.01f);
 		manager.update(0.01f);
 		sunEntity.draw(c);
 		
 		
 		groundEntity.draw(c);
+		
 
 	}
 	

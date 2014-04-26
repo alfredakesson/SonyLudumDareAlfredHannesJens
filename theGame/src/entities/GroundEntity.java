@@ -19,7 +19,7 @@ public class GroundEntity extends Entity{
 
 	public GroundEntity(float x, float y, float width, float height) {
 		super(x, y);
-		oval = new RectF((int)x, (int)y, (int)(x+width), (int)(y+height));
+		oval = new RectF((int)x-width/2, (int)y, (int)(x+width/2), (int)(y+height));
 		
 		
 		paint = new Paint();
