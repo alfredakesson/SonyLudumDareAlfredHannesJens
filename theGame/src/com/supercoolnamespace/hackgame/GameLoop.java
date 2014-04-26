@@ -11,10 +11,8 @@ import android.view.Display;
 import android.view.WindowManager;
 import aurelienribon.tweenengine.BaseTween;
 import aurelienribon.tweenengine.Tween;
-import aurelienribon.tweenengine.TweenAccessor;
 import aurelienribon.tweenengine.TweenCallback;
 import aurelienribon.tweenengine.TweenManager;
-import aurelienribon.tweenengine.TweenUtils;
 import entities.GroundEntity;
 import entities.HouseEntity;
 import entities.SkyBox;
@@ -139,25 +137,5 @@ public class GameLoop {
 		
 		controlSquare.draw(c);
 		manager.update(delta);
-		//redraw();
-	}
-	
-	private void redraw() {
-		if (!sunUp && Math.sin(sunEntity.rotation) > 0) {
-			skyboxes.get(0).setColors(Color.red(SKY_DAY), Color.green(SKY_DAY),
-					Color.blue(SKY_DAY));
-			skyboxes.get(1).setColors(Color.red(SKY_NIGHT),
-					Color.green(SKY_NIGHT), Color.blue(SKY_NIGHT));
-			sunUp = true;
-		}
-
-		if (sunUp && Math.sin(sunEntity.rotation) < 0) {
-			skyboxes.get(1).setColors(Color.red(SKY_DAY), Color.green(SKY_DAY),
-					Color.blue(SKY_DAY));
-			skyboxes.get(0).setColors(Color.red(SKY_NIGHT),
-					Color.green(SKY_NIGHT), Color.blue(SKY_NIGHT));
-			sunUp = false;
-		}
-
 	}
 }
