@@ -7,6 +7,7 @@ public abstract class Entity {
 	protected float y; 
 	protected float rotation;
 	
+
 	public abstract void draw(Canvas c);
 
 	public void setX(float newX){
