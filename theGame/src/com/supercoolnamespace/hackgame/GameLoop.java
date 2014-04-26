@@ -16,66 +16,64 @@ import entities.SkyBox;
 import entities.SunEntity;
 
 public class GameLoop {
+
 	private static final String TAG = MainActivity.class.getSimpleName();
+
 	private TweenManager manager;
-	private SquareEntity square;
 	private Point displaySize;
-	private SunEntity sunEntity;
+
+	public boolean sunUp;
 
 	private final int SKY_DAY = Color.rgb(13, 2, 110);
 	private final int SKY_NIGHT = Color.rgb(18, 129, 255);
 
+	private SquareEntity square;
+	private SunEntity sunEntity;
+	private HouseEntity houseEntity;
 	private GroundEntity groundEntity;
 
 	private ArrayList<SkyBox> skyboxes;
-
 	private ArrayList<HouseEntity> houses;
 
-	private HouseEntity houseEntity;
-
-	public boolean sunUp;
+	private Entity controlSquare;
 
 	public GameLoop(Context context) {
 
+		// Get the screen size of the device
 		WindowManager wm = (WindowManager) context
 				.getSystemService(Context.WINDOW_SERVICE);
 		Display display = wm.getDefaultDisplay();
-
 		displaySize = new Point();
 		display.getSize(displaySize);
 
-		Tween.registerAccessor(Entity.class, new EntityTweener());
-		// Tween.registerAccessor(SquareEntity.class, new EntityTweener());
-		manager = new TweenManager();
-
-		square = new SquareEntity(context, 0, 0);
-
-		
+		// Create the sun
 		sunEntity = new SunEntity(displaySize.x / 2, displaySize.y / 2);
 		groundEntity = new GroundEntity(displaySize.x / 2, 0, 50, 3000,
 				displaySize.y);
-
 		sunUp = true;
 
+		// Create the skyboxes
 		skyboxes = new ArrayList<SkyBox>();
-
 		skyboxes.add(new SkyBox(0, 0, displaySize.x / 2, displaySize.y, Color
 				.rgb(167, 199, 240)));
 		skyboxes.add(new SkyBox(displaySize.x / 2, 0, displaySize.x / 2,
 				displaySize.y, Color.rgb(24, 8, 102)));
 
+		// Create the houses
 		houses = new ArrayList<HouseEntity>();
-
 		HouseEntity tempHouse = new HouseEntity(400, 50, 300, 150);
-
 		tempHouse.setRotation(-3);
 		houses.add(tempHouse);
-
 		tempHouse = new HouseEntity(100, 50, 300, 150);
 		tempHouse.setRotation(4);
 		houses.add(tempHouse);
-
 		houseEntity = new entities.HouseEntity(100, 100, 50, 50);
+
+		// Create treadmill with squares
+		manager = new TweenManager();
+		controlSquare = new SquareEntity(context, 200, 200);
+		/*Tween.to(controlSquare, EntityTweener.POSITION_XY, 0.5f).target(
+				controlSquare.x, controlSquare.y + 200).start();*/
 
 	}
 
@@ -103,10 +101,8 @@ public class GameLoop {
 
 		houseEntity.setRotation(houseEntity.getRotation() + delta);
 
-		square.draw(c);
-		manager.update(delta);
+
 		sunEntity.setRotation(sunEntity.getRotation() + delta);
-		manager.update(0.01f);
 		sunEntity.draw(c);
 
 		groundEntity.draw(c);

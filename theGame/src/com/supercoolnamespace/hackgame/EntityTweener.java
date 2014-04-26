@@ -35,7 +35,6 @@ public class EntityTweener implements TweenAccessor<Entity> {
 	@Override
 	public void setValues(Entity target, int tweenType, float[] newValues) {
 		
-		
 		switch (tweenType) {
 		case POSITION_X:
 			target.setX(newValues[0]);
