@@ -16,7 +16,7 @@ public class SquareEntity extends Entity {
 	private static final String TAG = MainActivity.class.getSimpleName();
 
 
-	public SquareEntity(Context ctx, Canvas c, float x, float y) {
+	public SquareEntity(Context ctx, float x, float y) {
 		this.x = x;
 		this.y = y;
 		bitmap = BitmapFactory.decodeResource(ctx.getResources(), R.drawable.blue_square);
@@ -26,7 +26,7 @@ public class SquareEntity extends Entity {
 	public void draw(Canvas c) {
 		
 		c.drawBitmap (bitmap, x, y, null);
-		c.drawRect(10,10,10,10, new Paint(10));
+		//c.drawRect(10,10,10,10, new Paint(10));
 		//Log.d(TAG, "drawing an entity");
 	}
 
