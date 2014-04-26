@@ -2,6 +2,7 @@ package com.supercoolnamespace.hackgame;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Random;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -170,26 +171,21 @@ public class GameLoop {
 		manager.update(delta);
 
 	}
-
-	// not working yet!
-	public float getMoveLengthX(Entity e, float moveVal) {
-		Log.d(TAG,
-				"getMoveLen + entityX = " + e.getX() + " entityY = " + e.getY());
-		Log.d(TAG, "getMoveLen + dispSize = " + displaySize.x + " "
-				+ displaySize.y);
-		float normalizedSize = e.getX() / displaySize.x;
-		// Log.d(TAG, "" + normalizedSize);
-		return normalizedSize * moveVal;
-	}
-
-	public float getMoveLengthY(Entity e, float moveVal) {
-		float normalizedSize = e.getY() / displaySize.y;
-		return normalizedSize * moveVal;
-		
-		
 	
-
-	}
+	private void shakeASquare(Canvas c, float delta, SquareEntity sqEntity) {
+			
+			Random rand = new Random();
+			int rotation = rand.nextInt(10);
+			if( rotation > 5 )
+				rotation *= -1;
+			sqEntity.setRotation(rotation);
+			
+			int pos = EntityTweener.POSITION_XY;
+			
+			
+			
+			sqEntity.setRotation(-rotation);
+		}
 	
 	
 }
