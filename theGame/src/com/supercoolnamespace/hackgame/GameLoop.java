@@ -1,5 +1,6 @@
 package com.supercoolnamespace.hackgame;
 
+import entities.GroundEntity;
 import entities.SunEntity;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -13,6 +14,8 @@ public class GameLoop {
 	private SquareEntity square;
 
 	private SunEntity sunEntity;
+	
+	private GroundEntity groundEntity;
 
 	public GameLoop(Context context) {
 
@@ -25,6 +28,7 @@ public class GameLoop {
 				.start(manager);
 
 		sunEntity = new SunEntity(400, 800);
+		groundEntity = new GroundEntity(200, 0, 100, 1600);
 
 		/*Timeline.createSequence()
 				.push(Tween.to(sunEntity, EntityTweener.POSITION_XY, 1f)
@@ -40,6 +44,9 @@ public class GameLoop {
 		sunEntity.draw(c);
 		
 		sunEntity.setRotation(sunEntity.getRotation() + delta*0.1f);
+		
+		
+		groundEntity.draw(c);
 	}
 
 }
