@@ -12,6 +12,7 @@ import android.view.WindowManager;
 import aurelienribon.tweenengine.Tween;
 import aurelienribon.tweenengine.TweenManager;
 import entities.GroundEntity;
+import entities.HouseEntity;
 import entities.SkyBox;
 import entities.SunEntity;
 
@@ -28,6 +29,8 @@ public class GameLoop {
 	private GroundEntity groundEntity;
 	
 	private ArrayList<SkyBox> skyboxes;
+	
+	private HouseEntity houseEntity;
 
 	public GameLoop(Context context) {
 
@@ -62,6 +65,11 @@ public class GameLoop {
 		
 		skyboxes.add(new SkyBox(0, 0, displaySize.x/2, displaySize.y, Color.rgb(167, 199, 240)));
 		skyboxes.add(new SkyBox(displaySize.x/2, 0, displaySize.x/2, displaySize.y, Color.rgb(24, 8, 102)));
+		
+		
+		houseEntity = new entities.HouseEntity(100, 100, 50, 50);
+		
+		
 
 	}
 
@@ -72,6 +80,8 @@ public class GameLoop {
 		}
 
 		
+		houseEntity.setRotation(houseEntity.getRotation() + delta);
+		
 		
 		square.draw(c);
 		manager.update(delta);
@@ -81,6 +91,9 @@ public class GameLoop {
 		
 		
 		groundEntity.draw(c);
+		houseEntity.draw(c);
+		
+		
 		
 
 	}
