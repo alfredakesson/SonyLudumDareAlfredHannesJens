@@ -14,7 +14,7 @@ public class MenuScreen extends Screen {
 
 	private Rect menuButton;
 
-	private Paint paint;
+	private Paint paint, textPaint;
 	private Paint backgroundPaint;
 
 	private float xOffset, xSize;
@@ -33,6 +33,11 @@ public class MenuScreen extends Screen {
 		
 		
 		this.callback = callback;
+		
+		textPaint = new Paint();
+		textPaint.setTextSize(50);
+		textPaint.setColor(Color.WHITE);
+		
 	}
 
 	public void touch(MotionEvent event) {
@@ -51,6 +56,7 @@ public class MenuScreen extends Screen {
 		for (int i = 0; i < 3; i++) {
 			int top = 100 + 200 * i;
 			c.drawRect(xOffset, top, xOffset + xSize, top - 100, paint);
+			c.drawText("MUHUHU", xOffset, top, textPaint);
 		}
 
 	}

@@ -17,7 +17,7 @@ public class SkyBox extends RectEntity implements Obscureable {
 	
 	
 	public static final float OPACITY_DAY = 0;
-	public static final float OPACITY_NIGHT = 200;
+	public static final float OPACITY_NIGHT = 250;
 	
 	
 
@@ -26,14 +26,14 @@ public class SkyBox extends RectEntity implements Obscureable {
 
 		paint = new Paint();
 
-		//paint.setColor(color);
+		paint.setColor(Color.rgb(0, 108, 255));
 		
 		opacityPaint = new Paint();
 		
 		opacityPaint.setColor(Color.BLACK);
 		
-		Shader shader = new LinearGradient(0, 0, width, 0, color, Color.BLUE, TileMode.MIRROR);
-		paint.setShader(shader);
+		//Shader shader = new LinearGradient(0, 0, width, 0, color, Color.BLUE, TileMode.MIRROR);
+		//paint.setShader(shader);
 
 	}
 

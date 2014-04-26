@@ -8,7 +8,7 @@ import com.supercoolnamespace.hackgame.Entity;
 
 public class SunEntity extends Entity{
 	
-	private final int SUN_RADIUS = 60;
+	private final int SUN_RADIUS = 100;
 	
 	private Paint paint;
 	
@@ -18,7 +18,7 @@ public class SunEntity extends Entity{
 	public SunEntity(float width, float height){
 		super(0,0);
 		paint = new Paint();
-		paint.setColor(Color.argb(255, 255, 100, 100));
+		paint.setColor(Color.argb(255, 227, 224, 0));
 		
 		this.width = width;
 		this.height = height;

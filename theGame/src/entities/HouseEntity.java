@@ -1,5 +1,7 @@
 package entities;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
@@ -14,6 +16,8 @@ public class HouseEntity extends RectEntity{
 	private Path path;
 	
 	private Paint paint;
+	
+	Bitmap building;
 
 	public HouseEntity(float x, float y, float width, float height) {
 		super(x, y, width, height);
@@ -24,6 +28,8 @@ public class HouseEntity extends RectEntity{
 		this.paint = new Paint();
 		
 		paint.setColor(Color.BLACK);
+		
+		//building = BitmapFactory.decodeResource(, id)
 		
 		
 	}
