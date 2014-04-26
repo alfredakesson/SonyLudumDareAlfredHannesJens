@@ -6,10 +6,15 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Point;
+import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
+import aurelienribon.tweenengine.BaseTween;
 import aurelienribon.tweenengine.Tween;
+import aurelienribon.tweenengine.TweenAccessor;
+import aurelienribon.tweenengine.TweenCallback;
 import aurelienribon.tweenengine.TweenManager;
+import aurelienribon.tweenengine.TweenUtils;
 import entities.GroundEntity;
 import entities.HouseEntity;
 import entities.SkyBox;
@@ -20,6 +25,9 @@ public class GameLoop {
 	private static final String TAG = MainActivity.class.getSimpleName();
 
 	private TweenManager manager;
+	private TweenCallback tweenCallback;
+	private int nbrOfSquaresSpawned;
+
 	private Point displaySize;
 
 	public boolean sunUp;
@@ -27,7 +35,6 @@ public class GameLoop {
 	private final int SKY_DAY = Color.rgb(13, 2, 110);
 	private final int SKY_NIGHT = Color.rgb(18, 129, 255);
 
-	private SquareEntity square;
 	private SunEntity sunEntity;
 	private HouseEntity houseEntity;
 	private GroundEntity groundEntity;
@@ -35,7 +42,8 @@ public class GameLoop {
 	private ArrayList<SkyBox> skyboxes;
 	private ArrayList<HouseEntity> houses;
 
-	private Entity controlSquare;
+	private SquareEntity controlSquare;
+	private ArrayList<Entity> squaresToSpawnList = new ArrayList<Entity>();
 
 	public GameLoop(Context context) {
 
@@ -69,16 +77,32 @@ public class GameLoop {
 		houses.add(tempHouse);
 		houseEntity = new entities.HouseEntity(100, 100, 50, 50);
 
-		// Create treadmill with squares
+		
+		// Create treadmill with squares, add callback function to the tween
+		// such that we can spawn other squares
 		manager = new TweenManager();
-		controlSquare = new SquareEntity(context, 200, 200);
-		/*Tween.to(controlSquare, EntityTweener.POSITION_XY, 0.5f).target(
-				controlSquare.x, controlSquare.y + 200).start();*/
+		Tween.registerAccessor(Entity.class, new EntityTweener());
 
+		tweenCallback = new TweenCallback() {
+
+			@Override
+			public void onEvent(int arg0, BaseTween<?> arg1) {
+				Log.d(TAG,"Här ska du va");
+				controlSquare.update(200f);
+			}
+		};
+		
+		controlSquare = new SquareEntity(context, 400, 0);
+		Tween.to(controlSquare, EntityTweener.POSITION_XY, 1.0f)
+				.target(400,200).repeat(Tween.INFINITY, 2.0f).setCallbackTriggers(TweenCallback.END).setCallback(tweenCallback).start(manager);
+		
+		
+		
 	}
 
 	public void draw(Canvas c, float delta) {
 
+		
 		if (!sunUp && Math.sin(sunEntity.rotation) > 0) {
 			skyboxes.get(0).setColors(Color.red(SKY_DAY), Color.green(SKY_DAY),
 					Color.blue(SKY_DAY));
@@ -101,7 +125,6 @@ public class GameLoop {
 
 		houseEntity.setRotation(houseEntity.getRotation() + delta);
 
-
 		sunEntity.setRotation(sunEntity.getRotation() + delta);
 		sunEntity.draw(c);
 
@@ -110,6 +133,31 @@ public class GameLoop {
 
 		for (HouseEntity he : houses) {
 			he.draw(c);
+		}
+		
+		controlSquare.draw(c);
+		Log.d(TAG, "y: " + controlSquare.y);
+		
+		controlSquare.draw(c);
+		manager.update(delta);
+		//redraw();
+	}
+	
+	private void redraw() {
+		if (!sunUp && Math.sin(sunEntity.rotation) > 0) {
+			skyboxes.get(0).setColors(Color.red(SKY_DAY), Color.green(SKY_DAY),
+					Color.blue(SKY_DAY));
+			skyboxes.get(1).setColors(Color.red(SKY_NIGHT),
+					Color.green(SKY_NIGHT), Color.blue(SKY_NIGHT));
+			sunUp = true;
+		}
+
+		if (sunUp && Math.sin(sunEntity.rotation) < 0) {
+			skyboxes.get(1).setColors(Color.red(SKY_DAY), Color.green(SKY_DAY),
+					Color.blue(SKY_DAY));
+			skyboxes.get(0).setColors(Color.red(SKY_NIGHT),
+					Color.green(SKY_NIGHT), Color.blue(SKY_NIGHT));
+			sunUp = false;
 		}
 
 	}

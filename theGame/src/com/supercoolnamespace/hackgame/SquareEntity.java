@@ -12,6 +12,8 @@ import android.view.SurfaceView;
 
 public class SquareEntity extends Entity {
 	private SurfaceView surfaceView;
+	private float offset;
+	private float fill = 400;
 	Bitmap bitmap; 
 	private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -23,10 +25,14 @@ public class SquareEntity extends Entity {
 
 	@Override
 	public void draw(Canvas c) {
-		
-		c.drawBitmap (bitmap, x, y, null);
+		c.drawBitmap (bitmap, x, fill+y, null);
+		Log.d(TAG, "y+fill: " + y+fill);
 		//c.drawRect(10,10,10,10, new Paint(10));
 		//Log.d(TAG, "drawing an entity");
+	}
+	
+	public void update(float stepSize) {
+		fill+= stepSize;
 	}
 
 }
