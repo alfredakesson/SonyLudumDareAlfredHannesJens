@@ -1,5 +1,6 @@
 package com.supercoolnamespace.hackgame;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.util.Log;
@@ -56,14 +57,12 @@ public class MainGamePanel extends SurfaceView implements
 		
 		
 		
-		/*if (event.getAction() == MotionEvent.ACTION_DOWN) {
+		if (event.getAction() == MotionEvent.ACTION_DOWN) {
 			if (event.getY() > getHeight() - 50) {
 				thread.setRunning(false);
 				((Activity) getContext()).finish();
-			} else {
-				Log.d(TAG, "Coords: x=" + event.getX() + ",y=" + event.getY());
 			}
-		}*/
+		}
 		return super.onTouchEvent(event);
 	}
 

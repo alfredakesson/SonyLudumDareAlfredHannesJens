@@ -94,8 +94,7 @@ public class MainThread extends Thread {
 	public void touch(MotionEvent event) {
 		if(!introScreen.isDead()){
 			introScreen.touch(event);
-		}
-		
+		}		
 	}
 
 }
