@@ -1,5 +1,6 @@
 package com.supercoolnamespace.hackgame;
 
+import android.graphics.Canvas;
 import android.util.Log;
 import android.view.SurfaceHolder;
 
@@ -30,7 +31,19 @@ public class MainThread extends Thread {
 			tickCount++;
 			// update game state
 			// render state to the screen
+			Canvas c = null;
+            try {
+                   c = surfaceHolder.lockCanvas();
+                   synchronized (surfaceHolder) {
+                          new SquareEntity(c, 100, 100);
+                   }
+            } finally {
+                   if (c != null) {
+                	   surfaceHolder.unlockCanvasAndPost(c);
+                   }
+            }
 		}
 		Log.d(TAG, "Gameloop executed " + tickCount + " times.");
 	}
+	
 }
