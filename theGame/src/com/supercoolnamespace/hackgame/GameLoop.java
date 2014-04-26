@@ -85,7 +85,7 @@ public class GameLoop {
 		
 		square.draw(c);
 		manager.update(delta);
-		sunEntity.setRotation(sunEntity.getRotation() + delta*0.01f);
+		sunEntity.setRotation(sunEntity.getRotation() + delta);
 		manager.update(0.01f);
 		sunEntity.draw(c);
 		

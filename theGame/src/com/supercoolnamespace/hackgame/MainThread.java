@@ -48,22 +48,23 @@ public class MainThread extends Thread {
 	@Override
 	public void run() {
 		long tickCount = 0;
-		long oldTime; 
+		
+		
+		long oldTime =System.nanoTime(); 
 		long deltaTime;
 		Log.d(TAG, "Starting game loop");
 		while (running) {
-			oldTime = Calendar.getInstance().getTimeInMillis();
 			tickCount++;
 			// update game state
 			// render state to the screen
 			Canvas c = null;
 			try {
-				deltaTime = Calendar.getInstance().getTimeInMillis() - oldTime;
+				deltaTime = System.nanoTime() - oldTime;
 				c = surfaceHolder.lockCanvas();
 				synchronized (surfaceHolder) {	
 					c.drawRect(0, 0, c.getWidth(), c.getHeight(), backgroundPaint);
-					
-					gameLoop.draw(c, deltaTime);
+					oldTime = System.nanoTime();
+					gameLoop.draw(c, (float)deltaTime/1000000000);
 
 					
 				}
