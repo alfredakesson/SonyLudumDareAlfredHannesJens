@@ -87,14 +87,15 @@ public class GameLoop {
 
 			@Override
 			public void onEvent(int arg0, BaseTween<?> arg1) {
-				Log.d(TAG,"Här ska du va");
-				controlSquare.update(200f);
+				Log.d(TAG,"Här ska du va" + arg0);
+				if(arg0 == 2)
+					controlSquare.update(200f);
 			}
 		};
 		
 		controlSquare = new SquareEntity(context, 400, 0);
 		Tween.to(controlSquare, EntityTweener.POSITION_XY, 1.0f)
-				.target(400,200).repeat(Tween.INFINITY, 2.0f).setCallbackTriggers(TweenCallback.END).setCallback(tweenCallback).start(manager);
+				.target(400,200).repeat(Tween.INFINITY, 2.0f).start(manager).setCallback(tweenCallback).setCallbackTriggers(TweenCallback.ANY);
 		
 		
 		
@@ -135,8 +136,6 @@ public class GameLoop {
 			he.draw(c);
 		}
 		
-		controlSquare.draw(c);
-		Log.d(TAG, "y: " + controlSquare.y);
 		
 		controlSquare.draw(c);
 		manager.update(delta);
