@@ -2,6 +2,7 @@ package com.supercoolnamespace.hackgame;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -18,7 +19,7 @@ public class MainActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+				
 		// requesting to turn the title OFF
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		
@@ -28,9 +29,9 @@ public class MainActivity extends Activity {
 		
 		// set our MainGamePanel as the View
 		setContentView(new MainGamePanel(this));
-		
 		Log.d(TAG, "View added");
 	}
+
 
 	@Override
 	public void onDestroy() {

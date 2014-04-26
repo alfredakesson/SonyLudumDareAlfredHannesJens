@@ -21,8 +21,6 @@ public class MainGamePanel extends SurfaceView implements
 
 		// create the game loop thread
 		thread = new MainThread(getHolder(), this);
-
-
 		setFocusable(true);
 	}
 
@@ -33,6 +31,8 @@ public class MainGamePanel extends SurfaceView implements
 
 	@Override
 	public void surfaceCreated(SurfaceHolder holder) {
+		Log.d(TAG, "Creating surface");
+		setWillNotDraw(false);
 		thread.setRunning(true);
 		thread.start();
 	}
@@ -65,5 +65,6 @@ public class MainGamePanel extends SurfaceView implements
 
 	@Override
 	protected void onDraw(Canvas canvas) {
+		
 	}
 }

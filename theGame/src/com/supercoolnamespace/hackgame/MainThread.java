@@ -6,16 +6,16 @@ import android.view.SurfaceHolder;
 
 public class MainThread extends Thread {
 	private static final String TAG = MainActivity.class.getSimpleName();
-	
+
 	private SurfaceHolder surfaceHolder;
 	private MainGamePanel gamePanel;
 
 	public MainThread(SurfaceHolder surfaceHolder, MainGamePanel gamePanel) {
-	 super();
-	 this.surfaceHolder = surfaceHolder;
-	 this.gamePanel = gamePanel;
+		super();
+		this.surfaceHolder = surfaceHolder;
+		this.gamePanel = gamePanel;
 	}
-	
+
 	// flag to hold game state
 	private boolean running;
 
@@ -32,18 +32,19 @@ public class MainThread extends Thread {
 			// update game state
 			// render state to the screen
 			Canvas c = null;
-            try {
-                   c = surfaceHolder.lockCanvas();
-                   synchronized (surfaceHolder) {
-                          new SquareEntity(c, 100, 100);
-                   }
-            } finally {
-                   if (c != null) {
-                	   surfaceHolder.unlockCanvasAndPost(c);
-                   }
-            }
+			try {
+				c = surfaceHolder.lockCanvas();
+				synchronized (surfaceHolder) {
+					new SquareEntity(gamePanel.getContext(), c, 0, 0).draw(c);
+
+				}
+			} finally {
+				if (c != null) {
+					surfaceHolder.unlockCanvasAndPost(c);
+				}
+			}
 		}
 		Log.d(TAG, "Gameloop executed " + tickCount + " times.");
 	}
-	
+
 }

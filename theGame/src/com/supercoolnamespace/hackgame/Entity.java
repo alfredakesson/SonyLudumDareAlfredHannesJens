@@ -1,13 +1,14 @@
 package com.supercoolnamespace.hackgame;
 
-import android.content.Context;
+
+import android.graphics.Canvas;
 
 public abstract class Entity {
 	float x; 
 	float y; 
 	
 
-	public abstract void draw(Context context);
+	public abstract void draw(Canvas c);
 
 	public void setX(float newX){
 		this.x = newX;
