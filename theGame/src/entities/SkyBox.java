@@ -1,56 +1,50 @@
 package entities;
 
-import com.supercoolnamespace.hackgame.Colorable;
+import com.supercoolnamespace.hackgame.Obscureable;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
-public class SkyBox extends RectEntity implements Colorable {
+public class SkyBox extends RectEntity implements Obscureable {
 
-	private Paint paint;
+	private Paint paint, opacityPaint;
 	
-	private float red, green, blue;
+	private float opacity;
+	
+	
+	public static final float OPACITY_DAY = 0;
+	public static final float OPACITY_NIGHT = 200;
+	
+	
 
 	public SkyBox(float x, float y, float width, float height, int color) {
 		super(x, y, width, height);
 
 		paint = new Paint();
-		
-		red = Color.red(color);
-		green = Color.green(color);
-		blue = Color.blue(color);
 
 		paint.setColor(color);
+		
+		opacityPaint = new Paint();
+		
+		opacityPaint.setColor(Color.BLACK);
 
 	}
 
 	@Override
 	public void draw(Canvas c) {
 		c.drawRect(rectF, paint);
+		c.drawRect(rectF, opacityPaint);
 	}
 
-	public void setColors(float red, float green, float blue) {
-		this.red = red;
-		this.green = green;
-		this.blue = blue;
-		paint.setColor(Color.rgb((int)red, (int)green, (int)blue));
-	}
-
-	@Override
-	public float getRed() {
-
-		return red;
+	public void setOpacity(float newOpacity) {
+		this.opacity = newOpacity;
+		opacityPaint.setAlpha((int)newOpacity);
 	}
 
 	@Override
-	public float getGreen() {
-		return green;
-	}
-
-	@Override
-	public float getBlue() {
-		return blue;
+	public float getOpacity(){
+		return opacity;
 	}
 
 }

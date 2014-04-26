@@ -60,6 +60,8 @@ public class MainThread extends Thread {
 								backgroundPaint);
 						oldTime = System.nanoTime();
 						gameLoop.draw(c, (float) deltaTime / 1000000000);
+					} else {
+						System.out.println("LOST FRAME");
 					}
 
 				}

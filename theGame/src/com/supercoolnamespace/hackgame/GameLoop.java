@@ -23,7 +23,10 @@ public class GameLoop {
 	private Point displaySize;
 	private SunEntity sunEntity;
 
-	private final int SKY_DAY = Color.rgb(13, 2, 110);
+	private final float NIGHT_START_ANGLE = 0.5f;
+	private final float DAWN_TIME = 0.5f;
+
+	private final int SKY_DAY = Color.rgb(135, 206, 235);
 	private final int SKY_NIGHT = Color.rgb(18, 129, 255);
 
 	private GroundEntity groundEntity;
@@ -36,6 +39,8 @@ public class GameLoop {
 
 	public boolean sunUp;
 
+	private TweenManager colorManager;
+
 	public GameLoop(Context context) {
 
 		WindowManager wm = (WindowManager) context
@@ -47,6 +52,8 @@ public class GameLoop {
 
 		Tween.registerAccessor(Entity.class, new EntityTweener());
 		// Tween.registerAccessor(SquareEntity.class, new EntityTweener());
+
+		Tween.registerAccessor(SkyBox.class, new OpacityTweener());
 		manager = new TweenManager();
 
 		square = new SquareEntity(context, 0, 0);
@@ -71,41 +78,45 @@ public class GameLoop {
 		 */
 		skyboxes = new ArrayList<SkyBox>();
 
-		skyboxes.add(new SkyBox(0, 0, displaySize.x / 2, displaySize.y, Color
-				.rgb(167, 199, 240)));
+		skyboxes.add(new SkyBox(0, 0, displaySize.x / 2, displaySize.y, SKY_DAY));
 		skyboxes.add(new SkyBox(displaySize.x / 2, 0, displaySize.x / 2,
-				displaySize.y, Color.rgb(24, 8, 102)));
+				displaySize.y, SKY_DAY));
 
 		houses = new ArrayList<HouseEntity>();
 
 		HouseEntity tempHouse = new HouseEntity(400, 50, 300, 150);
-		
+
 		tempHouse.setRotation(-3);
 		houses.add(tempHouse);
-		
-		 tempHouse = new HouseEntity(100, 50, 300, 150);
-		 tempHouse.setRotation(4);
-		 houses.add(tempHouse);
+
+		tempHouse = new HouseEntity(100, 50, 300, 150);
+		tempHouse.setRotation(4);
+		houses.add(tempHouse);
 
 		houseEntity = new entities.HouseEntity(100, 100, 50, 50);
+
+		colorManager = new TweenManager();
 
 	}
 
 	public void draw(Canvas c, float delta) {
 
-		if (!sunUp && Math.sin(sunEntity.rotation) > 0) {
-			skyboxes.get(0).setColors(Color.red(SKY_DAY), Color.green(SKY_DAY),
-					Color.blue(SKY_DAY));
-			skyboxes.get(1).setColors(Color.red(SKY_NIGHT),
-					Color.green(SKY_NIGHT), Color.blue(SKY_NIGHT));
+		if (!sunUp && Math.sin(sunEntity.rotation + NIGHT_START_ANGLE) > 0) {
+
+			Tween.to(skyboxes.get(1), OpacityTweener.TWEEN_OPACITY, DAWN_TIME)
+					.target(SkyBox.OPACITY_DAY).start(colorManager);
+			Tween.to(skyboxes.get(0), OpacityTweener.TWEEN_OPACITY, DAWN_TIME)
+					.target(SkyBox.OPACITY_NIGHT).start(colorManager);
+
 			sunUp = true;
 		}
 
-		if (sunUp && Math.sin(sunEntity.rotation) < 0) {
-			skyboxes.get(1).setColors(Color.red(SKY_DAY), Color.green(SKY_DAY),
-					Color.blue(SKY_DAY));
-			skyboxes.get(0).setColors(Color.red(SKY_NIGHT),
-					Color.green(SKY_NIGHT), Color.blue(SKY_NIGHT));
+		if (sunUp && Math.sin(sunEntity.rotation + NIGHT_START_ANGLE) < 0) {
+			Tween.to(skyboxes.get(0), OpacityTweener.TWEEN_OPACITY, DAWN_TIME)
+					.target(SkyBox.OPACITY_DAY).start(colorManager);
+			Tween.to(skyboxes.get(1), OpacityTweener.TWEEN_OPACITY, DAWN_TIME)
+					.target(SkyBox.OPACITY_NIGHT).start(colorManager);
+
 			sunUp = false;
 		}
 
@@ -127,6 +138,8 @@ public class GameLoop {
 		for (HouseEntity he : houses) {
 			he.draw(c);
 		}
+
+		colorManager.update(delta);
 
 	}
 
