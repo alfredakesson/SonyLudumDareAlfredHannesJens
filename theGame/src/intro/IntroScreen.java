@@ -1,13 +1,16 @@
 package intro;
 
+import com.supercoolnamespace.hackgame.MainThread;
 import com.supercoolnamespace.hackgame.Screen;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.drawable.Drawable.Callback;
 import android.view.MotionEvent;
 
-public class IntroScreen implements Screen{
+public class IntroScreen extends Screen{
 
 	private float timeLeft = 3f;
 
@@ -20,7 +23,8 @@ public class IntroScreen implements Screen{
 		return isDead;
 	}
 	
-	public IntroScreen(){
+	public IntroScreen(Context context, MainThread callback){
+		super(context, callback);
 		paint = new Paint();
 		paint.setColor(Color.BLACK);
 	}
@@ -36,7 +40,7 @@ public class IntroScreen implements Screen{
 	}
 
 	public void touch(MotionEvent event) {
-		
+		callback.goToGame();
 		isDead = true;
 		
 	}

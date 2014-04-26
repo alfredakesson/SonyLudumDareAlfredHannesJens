@@ -4,7 +4,10 @@ import com.supercoolnamespace.hackgame.Obscureable;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.LinearGradient;
 import android.graphics.Paint;
+import android.graphics.Shader;
+import android.graphics.Shader.TileMode;
 
 public class SkyBox extends RectEntity implements Obscureable {
 
@@ -23,11 +26,14 @@ public class SkyBox extends RectEntity implements Obscureable {
 
 		paint = new Paint();
 
-		paint.setColor(color);
+		//paint.setColor(color);
 		
 		opacityPaint = new Paint();
 		
 		opacityPaint.setColor(Color.BLACK);
+		
+		Shader shader = new LinearGradient(0, 0, width, 0, color, Color.BLUE, TileMode.MIRROR);
+		paint.setShader(shader);
 
 	}
 

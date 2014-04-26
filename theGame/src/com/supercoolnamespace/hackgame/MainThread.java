@@ -4,6 +4,9 @@ import intro.IntroScreen;
 
 import java.util.Calendar;
 
+import menu.MenuScreen;
+
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Movie;
@@ -27,6 +30,8 @@ public class MainThread extends Thread {
 	private IntroScreen introScreen;
 	
 	private Screen currentScreen;
+	
+	private Context context;
 
 	public MainThread(SurfaceHolder surfaceHolder, MainGamePanel gamePanel) {
 		super();
@@ -38,7 +43,12 @@ public class MainThread extends Thread {
 
 		gameLoop = new GameLoop(gamePanel.getContext());
 
-		introScreen = new IntroScreen();
+		introScreen = new IntroScreen(gamePanel.getContext(), this);
+		
+		
+		currentScreen = new MenuScreen(gamePanel.getContext(), this);
+		
+		context = gamePanel.getContext();
 
 	}
 
@@ -66,15 +76,15 @@ public class MainThread extends Thread {
 				c = surfaceHolder.lockCanvas();
 				synchronized (surfaceHolder) {
 					if (c != null) {
-
-						if (!introScreen.isDead()) {
-							oldTime = System.nanoTime();
-							introScreen.draw(c, (float) deltaTime / 1000000000);
-						} else {
+						if(currentScreen == null){
 							c.drawRect(0, 0, c.getWidth(), c.getHeight(),
 									backgroundPaint);
 							oldTime = System.nanoTime();
 							gameLoop.draw(c, (float) deltaTime / 1000000000);
+						}
+						else if (!currentScreen.isDead()){
+							oldTime = System.nanoTime();
+							currentScreen.draw(c, (float) deltaTime / 1000000000);
 						}
 
 					} else {
@@ -90,10 +100,22 @@ public class MainThread extends Thread {
 		}
 		Log.d(TAG, "Gameloop executed " + tickCount + " times.");
 	}
+	
+	public void goToMovie(){
+		currentScreen = new IntroScreen(context, this);
+	}
+	
+	public void goToGame(){
+		currentScreen = null;
+	}
 
 	public void touch(MotionEvent event) {
-		if(!introScreen.isDead()){
-			introScreen.touch(event);
+		if(currentScreen == null){
+			return;
+		}
+		
+		if(!currentScreen.isDead()){
+			currentScreen.touch(event);
 		}
 		
 	}
