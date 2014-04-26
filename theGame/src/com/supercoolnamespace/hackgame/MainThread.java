@@ -1,5 +1,7 @@
 package com.supercoolnamespace.hackgame;
 
+import java.util.Calendar;
+
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -17,7 +19,7 @@ public class MainThread extends Thread {
 	private GameLoop gameLoop;
 	
 	private Paint backgroundPaint;
-	
+
 
 
 	public MainThread(SurfaceHolder surfaceHolder, MainGamePanel gamePanel) {
@@ -46,16 +48,19 @@ public class MainThread extends Thread {
 	@Override
 	public void run() {
 		long tickCount = 0;
+		long oldTime; 
+		long deltaTime;
 		Log.d(TAG, "Starting game loop");
 		while (running) {
+			oldTime = Calendar.getInstance().getTimeInMillis();
 			tickCount++;
 			// update game state
 			// render state to the screen
 			Canvas c = null;
 			try {
+				deltaTime = Calendar.getInstance().getTimeInMillis() - oldTime;
 				c = surfaceHolder.lockCanvas();
-				synchronized (surfaceHolder) {
-					
+				synchronized (surfaceHolder) {	
 					c.drawRect(0, 0, c.getWidth(), c.getHeight(), backgroundPaint);
 					
 					gameLoop.draw(c, 0.06f);
