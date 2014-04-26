@@ -17,12 +17,16 @@ public class GroundEntity extends Entity{
 	
 	private Paint paint;
 
-	public GroundEntity(float x, float y, float width, float height) {
+	public GroundEntity(float x, float y, float width, float height, float screenHeight) {
 		super(x, y);
-		oval = new RectF((int)x-width/2, (int)y, (int)(x+width/2), (int)(y+height));
+		
+		float offset = (height - screenHeight)/2;
+		oval = new RectF((int)x-width/2, (int)y-offset, (int)(x+width/2), (int)(y+height));
 		
 		
 		paint = new Paint();
+		
+		
 		
 		paint.setShader(new RadialGradient(0, 0, height/3, Color.BLACK, Color.rgb(179, 97, 39), Shader.TileMode.CLAMP));
 	}
