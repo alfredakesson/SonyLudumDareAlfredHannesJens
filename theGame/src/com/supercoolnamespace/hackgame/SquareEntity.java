@@ -17,8 +17,7 @@ public class SquareEntity extends Entity {
 
 
 	public SquareEntity(Context ctx, float x, float y) {
-		this.x = x;
-		this.y = y;
+		super(x,y);
 		bitmap = BitmapFactory.decodeResource(ctx.getResources(), R.drawable.blue_square);
 	}
 

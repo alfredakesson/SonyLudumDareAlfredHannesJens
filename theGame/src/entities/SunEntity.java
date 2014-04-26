@@ -12,14 +12,23 @@ public class SunEntity extends Entity{
 	
 	private Paint paint;
 	
-	public SunEntity(){
+	private float width;
+	private float height;
+	
+	public SunEntity(float width, float height){
+		super(0,0);
 		paint = new Paint();
 		paint.setColor(Color.argb(255, 255, 100, 100));
+		
+		this.width = width;
+		this.height = height;
 	}
 
 	@Override
 	public void draw(Canvas c) {
-		c.drawCircle(x, y, SUN_RADIUS, paint);
+		
+
+		c.drawCircle((float) (width * Math.sin(rotation)) + width/2, (float) (height * Math.cos(rotation)) + height/2 , SUN_RADIUS, paint);
 		
 	}
 
