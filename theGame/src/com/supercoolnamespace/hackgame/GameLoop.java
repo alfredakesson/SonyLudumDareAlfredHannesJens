@@ -6,7 +6,9 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Point;
+import android.util.Log;
 import android.view.Display;
+import android.view.MotionEvent;
 import android.view.WindowManager;
 import aurelienribon.tweenengine.Tween;
 import aurelienribon.tweenengine.TweenManager;
@@ -15,7 +17,7 @@ import entities.HouseEntity;
 import entities.SkyBox;
 import entities.SunEntity;
 
-public class GameLoop {
+public class GameLoop extends Screen{
 
 	private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -48,6 +50,7 @@ public class GameLoop {
 	
 
 	public GameLoop(Context context) {
+		super(context, null);
 		this.context = context;
 		
 		upperWorld = new UpperWorld(context, displaySize);
@@ -149,6 +152,25 @@ public class GameLoop {
 
 			sunUp = false;
 		}
+	}
+
+
+
+	@Override
+	public void touch(MotionEvent event) {
+		float y = event.getY();
+		float x = event.getX();
+		Log.d("GAMELOOP", "Is pressed! coords: (" + x + "," + y + ")");
+		upperWorld.handleTouch(x, y);
+		
+	}
+
+
+
+	@Override
+	public boolean isDead() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 

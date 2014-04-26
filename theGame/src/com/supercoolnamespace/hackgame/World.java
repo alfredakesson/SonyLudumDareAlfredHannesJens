@@ -57,4 +57,13 @@ public abstract class World {
 		sqEntity.setRotation(-rotation);
 
 	}
+
+	public void handleTouch(float x, float y) {
+		for(SquareEntity sq : squareList) {
+			if(sq.isPressed(new Point((int)x, (int)y))) {
+				Log.d("world", "Is pressed!");
+			}
+		}
+		
+	}
 }
