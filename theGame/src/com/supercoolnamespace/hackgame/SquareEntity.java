@@ -4,15 +4,9 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
 import android.util.Log;
-import android.view.SurfaceView;
 
 public class SquareEntity extends Entity {
-	private SurfaceView surfaceView;
-	private float offset;
 	private float fill = 200;
 	Bitmap bitmap;
 	private boolean drawTheScreen =  true; 

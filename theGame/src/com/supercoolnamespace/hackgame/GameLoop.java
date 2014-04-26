@@ -2,6 +2,7 @@ package com.supercoolnamespace.hackgame;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Random;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -22,9 +23,9 @@ public class GameLoop {
 
 	private static final String TAG = MainActivity.class.getSimpleName();
 
-	private TweenManager manager;
-	private TweenCallback tweenCallback;
-	private int nbrOfSquaresSpawned;
+	
+	private World upperWorld;
+	private World lowerWorld;
 
 	private Point displaySize;
 
@@ -44,19 +45,17 @@ public class GameLoop {
 	private ArrayList<HouseEntity> houses;
 
 	private Context context;
-	
-	private LinkedList<SquareEntity> sq = new LinkedList<SquareEntity>();
+
 
 	private TweenManager colorManager;
 
-
-	public void removeTopSqure(){
-		sq.removeFirst();
-	}
 	
 
 	public GameLoop(Context context) {
-
+		this.context = context;
+		
+		upperWorld = new UpperWorld(context);
+		
 		// Get the screen size of the device
 		WindowManager wm = (WindowManager) context
 				.getSystemService(Context.WINDOW_SERVICE);
@@ -65,11 +64,9 @@ public class GameLoop {
 		display.getSize(displaySize);
 
 		Tween.registerAccessor(Entity.class, new EntityTweener());
-		// Tween.registerAccessor(SquareEntity.class, new EntityTweener());
 
 		Tween.registerAccessor(SkyBox.class, new OpacityTweener());
-		manager = new TweenManager();
-
+		
 
 		sunEntity = new SunEntity(displaySize.x / 2, displaySize.y / 2);
 		groundEntity = new GroundEntity(displaySize.x / 2, 0, 50, 3000,
@@ -95,52 +92,26 @@ public class GameLoop {
 		tempHouse.setRotation(4);
 		houses.add(tempHouse);
 
-		
 		houseEntity = new entities.HouseEntity(100, 100, 50, 50);
-
-		
-		// Create treadmill with squares, add callback function to the tween
-		// such that we can spawn other squares
-		manager = new TweenManager();
-		Tween.registerAccessor(Entity.class, new EntityTweener());
-
-		this.context = context;
-		newSqure();
-		
 		colorManager = new TweenManager();
+
+		
+		///////// UPPER WORLD //////////////
+		//
+
+
+		
+		
+		///////// LOWER WORLD //////////////
 		
 		
 	}
 
-
-
-	public void newSqure() {
-		SquareEntity temp = new SquareEntity(context, 400, 0);
-		sq.add(temp);
-		Tween.to(temp, EntityTweener.POSITION_XY, 0.5f)
-				.target(400,200).repeat(5, 1.0f).start(manager).setCallback(new SquareCallback(temp,this)).setCallbackTriggers(TweenCallback.ANY);
-	}
+	
 
 	public void draw(Canvas c, float delta) {
 
-
-		if (!sunUp && Math.sin(sunEntity.rotation + NIGHT_START_ANGLE) > 0) {
-
-			Tween.to(skyboxes.get(1), OpacityTweener.TWEEN_OPACITY, DAWN_TIME)
-					.target(SkyBox.OPACITY_DAY).start(colorManager);
-			Tween.to(skyboxes.get(0), OpacityTweener.TWEEN_OPACITY, DAWN_TIME)
-					.target(SkyBox.OPACITY_NIGHT).start(colorManager);
-		}
-
-
-		if (sunUp && Math.sin(sunEntity.rotation + NIGHT_START_ANGLE) < 0) {
-			Tween.to(skyboxes.get(0), OpacityTweener.TWEEN_OPACITY, DAWN_TIME)
-					.target(SkyBox.OPACITY_DAY).start(colorManager);
-			Tween.to(skyboxes.get(1), OpacityTweener.TWEEN_OPACITY, DAWN_TIME)
-					.target(SkyBox.OPACITY_NIGHT).start(colorManager);
-
-			sunUp = false;
-		}
+		drawSun();
 
 		for (SkyBox sb : skyboxes) {
 			sb.draw(c);
@@ -157,37 +128,38 @@ public class GameLoop {
 		for (HouseEntity he : houses) {
 			he.draw(c);
 		}
-		
-		for (SquareEntity sque : sq) {
-			sque.draw(c);
-			
-		}
-		
 
+		
+		upperWorld.drawAllSquares(c, delta);
 
 		colorManager.update(delta);
-		
-		manager.update(delta);
+
+		//manager.update(delta);
 
 	}
 
-	// not working yet!
-	public float getMoveLengthX(Entity e, float moveVal) {
-		Log.d(TAG,
-				"getMoveLen + entityX = " + e.getX() + " entityY = " + e.getY());
-		Log.d(TAG, "getMoveLen + dispSize = " + displaySize.x + " "
-				+ displaySize.y);
-		float normalizedSize = e.getX() / displaySize.x;
-		// Log.d(TAG, "" + normalizedSize);
-		return normalizedSize * moveVal;
+
+
+	private void drawSun() {
+		if (!sunUp && Math.sin(sunEntity.rotation + NIGHT_START_ANGLE) > 0) {
+
+			Tween.to(skyboxes.get(1), OpacityTweener.TWEEN_OPACITY, DAWN_TIME)
+					.target(SkyBox.OPACITY_DAY).start(colorManager);
+			Tween.to(skyboxes.get(0), OpacityTweener.TWEEN_OPACITY, DAWN_TIME)
+					.target(SkyBox.OPACITY_NIGHT).start(colorManager);
+			sunUp = true;
+		}
+
+		if (sunUp && Math.sin(sunEntity.rotation + NIGHT_START_ANGLE) < 0) {
+			Tween.to(skyboxes.get(0), OpacityTweener.TWEEN_OPACITY, DAWN_TIME)
+					.target(SkyBox.OPACITY_DAY).start(colorManager);
+			Tween.to(skyboxes.get(1), OpacityTweener.TWEEN_OPACITY, DAWN_TIME)
+					.target(SkyBox.OPACITY_NIGHT).start(colorManager);
+
+			sunUp = false;
+		}
 	}
 
-	public float getMoveLengthY(Entity e, float moveVal) {
-		float normalizedSize = e.getY() / displaySize.y;
-		return normalizedSize * moveVal;
-		
-		
-	
 
-	}
+
 }
