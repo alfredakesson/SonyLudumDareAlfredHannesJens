@@ -12,6 +12,7 @@ public abstract class Entity {
 		this.y = y;
 	}
 	
+
 	public abstract void draw(Canvas c);
 
 	public void setX(float newX){

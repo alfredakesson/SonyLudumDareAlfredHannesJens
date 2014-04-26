@@ -63,7 +63,7 @@ public class MainThread extends Thread {
 				synchronized (surfaceHolder) {	
 					c.drawRect(0, 0, c.getWidth(), c.getHeight(), backgroundPaint);
 					
-					gameLoop.draw(c, 0.06f);
+					gameLoop.draw(c, deltaTime);
 
 					
 				}
@@ -75,5 +75,7 @@ public class MainThread extends Thread {
 		}
 		Log.d(TAG, "Gameloop executed " + tickCount + " times.");
 	}
+	
+
 
 }
