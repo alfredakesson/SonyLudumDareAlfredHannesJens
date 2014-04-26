@@ -6,7 +6,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Point;
-import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
 import aurelienribon.tweenengine.Tween;
@@ -51,24 +50,13 @@ public class GameLoop {
 
 		square = new SquareEntity(context, 0, 0);
 
-		float xMove = getMoveLengthX(square, 0.5f);
-		float yMove = getMoveLengthY(square, 0.5f);
-
-		Tween.to(square, EntityTweener.POSITION_XY, 4f).target(xMove, yMove)
-				.start(manager);
-
+		
 		sunEntity = new SunEntity(displaySize.x / 2, displaySize.y / 2);
 		groundEntity = new GroundEntity(displaySize.x / 2, 0, 50, 3000,
 				displaySize.y);
 
 		sunUp = true;
 
-		/*
-		 * Timeline.createSequence() .push(Tween.to(sunEntity,
-		 * EntityTweener.POSITION_XY, 1f) .target(0, 400))
-		 * .push(Tween.to(sunEntity, EntityTweener.POSITION_XY, 1f) .target(400,
-		 * 800)).repeatYoyo(4, 0.0f).start(manager);
-		 */
 		skyboxes = new ArrayList<SkyBox>();
 
 		skyboxes.add(new SkyBox(0, 0, displaySize.x / 2, displaySize.y, Color
@@ -79,13 +67,13 @@ public class GameLoop {
 		houses = new ArrayList<HouseEntity>();
 
 		HouseEntity tempHouse = new HouseEntity(400, 50, 300, 150);
-		
+
 		tempHouse.setRotation(-3);
 		houses.add(tempHouse);
-		
-		 tempHouse = new HouseEntity(100, 50, 300, 150);
-		 tempHouse.setRotation(4);
-		 houses.add(tempHouse);
+
+		tempHouse = new HouseEntity(100, 50, 300, 150);
+		tempHouse.setRotation(4);
+		houses.add(tempHouse);
 
 		houseEntity = new entities.HouseEntity(100, 100, 50, 50);
 
@@ -129,21 +117,4 @@ public class GameLoop {
 		}
 
 	}
-
-	// not working yet!
-	public float getMoveLengthX(Entity e, float moveVal) {
-		Log.d(TAG,
-				"getMoveLen + entityX = " + e.getX() + " entityY = " + e.getY());
-		Log.d(TAG, "getMoveLen + dispSize = " + displaySize.x + " "
-				+ displaySize.y);
-		float normalizedSize = e.getX() / displaySize.x;
-		// Log.d(TAG, "" + normalizedSize);
-		return normalizedSize * moveVal;
-	}
-
-	public float getMoveLengthY(Entity e, float moveVal) {
-		float normalizedSize = e.getY() / displaySize.y;
-		return normalizedSize * moveVal;
-	}
-
 }
