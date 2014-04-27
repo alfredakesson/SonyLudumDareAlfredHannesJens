@@ -40,7 +40,7 @@ public class IntroScreen extends Screen {
 
 		textPaint = new Paint();
 		textPaint.setColor(Color.WHITE);
-		textPaint.setTextSize(150);
+		textPaint.setTextSize((float) (displaySize.x*0.3));
 
 		timeLeftToChange = 2f;
 		

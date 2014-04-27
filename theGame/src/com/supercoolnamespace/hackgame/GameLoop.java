@@ -23,6 +23,7 @@ public class GameLoop extends Screen{
 
 	private static final String TAG = MainActivity.class.getSimpleName();
 	
+	private Offset theDrawOffset;
 	private Entity blueHause;
 	
 	private World upperWorld;
@@ -69,6 +70,10 @@ public class GameLoop extends Screen{
 		
 		upperWorld = new UpperWorld(context, displaySize,share);
 		lowerWorld = new LowerWorld(context, displaySize,share);
+		
+		
+		theDrawOffset = new Offset();
+		
 		
 		Tween.registerAccessor(Entity.class, new EntityTweener());
 
@@ -121,7 +126,7 @@ public class GameLoop extends Screen{
 		}
 
 		drawSun(c);
-		sunEntity.setRotation(sunEntity.getRotation() + delta);///CHANGE THIS VALUE LATER!!!!
+		sunEntity.setRotation(sunEntity.getRotation() + 0.3f*delta);///CHANGE THIS VALUE LATER!!!!
 		sunEntity.draw(c);
 
 		groundEntity.draw(c);
@@ -153,7 +158,7 @@ public class GameLoop extends Screen{
 					.target(SkyBox.OPACITY_NIGHT).start(colorManager);
 			sunUp = true;
 			upperWorld = new UpperWorld(context, displaySize,share);
-			share.drawRemovedSquares(c);
+			share.updateWorld(c);
 		}
 
 		if (sunUp && Math.sin(sunEntity.rotation + NIGHT_START_ANGLE) < 0) {
@@ -164,7 +169,7 @@ public class GameLoop extends Screen{
 
 			sunUp = false;
 			lowerWorld = new LowerWorld(context, displaySize,share);
-			share.drawRemovedSquares(c);
+			share.updateWorld(c);;
 		}
 	
 		
