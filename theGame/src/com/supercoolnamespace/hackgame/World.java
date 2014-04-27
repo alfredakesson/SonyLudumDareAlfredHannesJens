@@ -36,9 +36,7 @@ public abstract class World {
 	
 	public void newSquare() {
 		
-		int color = share.getColor();
-		if(color == -1)
-			color = rand.nextInt(1000)%2;
+		int color = getColorForSquare();
 		
 		SquareEntity temp = new SquareEntity(context, getStartPosX(), 0, color);
 		squareList.add(temp);
@@ -46,6 +44,16 @@ public abstract class World {
 				.repeat(5, 0.2f).start(manager)
 				.setCallback(new SquareCallback(temp, this))
 				.setCallbackTriggers(TweenCallback.ANY);
+	}
+
+	protected int getColorForSquare() {
+		int color = share.getColor();
+		if(color == -1)
+			color = rand.nextInt(1000)%2;
+		else
+			Log.d("TAG", "color is: " + color);
+		
+		return color;
 	}
 
 
