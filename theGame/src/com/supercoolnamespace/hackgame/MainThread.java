@@ -27,9 +27,9 @@ public class MainThread extends Thread {
 	private Paint backgroundPaint;
 
 	private IntroScreen introScreen;
-	
+
 	private Screen currentScreen;
-	
+
 	private Context context;
 
 	public MainThread(SurfaceHolder surfaceHolder, MainGamePanel gamePanel) {
@@ -43,10 +43,9 @@ public class MainThread extends Thread {
 		gameLoop = new GameLoop(gamePanel.getContext());
 
 		introScreen = new IntroScreen(gamePanel.getContext(), this);
-		
-		
+
 		currentScreen = new MenuScreen(gamePanel.getContext(), this);
-		
+
 		context = gamePanel.getContext();
 
 	}
@@ -67,24 +66,22 @@ public class MainThread extends Thread {
 		Log.d(TAG, "Starting game loop");
 		while (running) {
 			tickCount++;
+			
+			System.out.println();
 			// update game state
 			// render state to the screen
 			Canvas c = null;
 			try {
-				deltaTime = System.nanoTime() - oldTime;
+				
 				c = surfaceHolder.lockCanvas();
 				synchronized (surfaceHolder) {
 					if (c != null) {
-						if(currentScreen == null){
-							c.drawRect(0, 0, c.getWidth(), c.getHeight(),
-									backgroundPaint);
-							oldTime = System.nanoTime();
-							gameLoop.draw(c, (float) deltaTime / 1000000000);
-						}
-						else {
-							oldTime = System.nanoTime();
-							currentScreen.draw(c, (float) deltaTime / 1000000000);
-						}
+
+						c.drawRect(0, 0, c.getWidth(), c.getHeight(),
+								backgroundPaint);
+						deltaTime = System.nanoTime() - oldTime;
+						oldTime = System.nanoTime();
+						currentScreen.draw(c, (float) deltaTime / 1000000000);
 
 					} else {
 						System.out.println("LOST FRAME");
@@ -99,24 +96,24 @@ public class MainThread extends Thread {
 		}
 		Log.d(TAG, "Gameloop executed " + tickCount + " times.");
 	}
-	
-	public void goToMovie(){
+
+	public void goToMovie() {
 		currentScreen = new IntroScreen(context, this);
 	}
-	
-	public void goToGame(){
+
+	public void goToGame() {
 		currentScreen = gameLoop;
 	}
 
 	public void touch(MotionEvent event) {
-		if(currentScreen == null){
+		if (currentScreen == null) {
 			return;
 		}
-		
-		if(!currentScreen.isDead()){
+
+		if (!currentScreen.isDead()) {
 			currentScreen.touch(event);
 		}
-		
+
 	}
 
 }
