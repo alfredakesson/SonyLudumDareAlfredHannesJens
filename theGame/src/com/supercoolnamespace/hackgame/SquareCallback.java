@@ -36,16 +36,25 @@ public class SquareCallback implements TweenCallback {
 				Log.d("GAME OVER", "XXXX GAME OVER");
 				
 				if (world.share.currentWorld == World.UpperWorld){
-					if (se.getColor() == SquareEntity.BLUE )
+					if (se.getColor() == SquareEntity.BLUE ){
 						world.share.sc.higherScore();
-					else 
+						world.drawOffset.increment();
+					}
+					else{ 
 						world.share.sc.lowerScore();
-					
+						world.drawOffset.decrease();
+
+					}
 				}else{
-					if (se.getColor() != SquareEntity.BLUE )
+					if (se.getColor() != SquareEntity.BLUE ){
 						world.share.sc.higherScore();
-					else 
+						world.drawOffset.increment();
+					}
+
+					else{ 
 						world.share.sc.lowerScore();
+						world.drawOffset.decrease();
+					}
 				}
 					
 			}
@@ -55,25 +64,6 @@ public class SquareCallback implements TweenCallback {
 			}
 			
 			
-
-
-			
-			if(se.hidden()) {
-				if (world.share.currentWorld == world.UpperWorld) {
-					if (se.getColor() == SquareEntity.BLUE) {
-						world.drawOffset.increment();
-					} else if (se.getColor() == SquareEntity.RED) {
-						world.drawOffset.decrease();
-					}
-
-				} else {
-					if (se.getColor() == SquareEntity.BLUE) {
-						world.drawOffset.decrease();
-					} else if (se.getColor() == SquareEntity.RED) {
-						world.drawOffset.increment();
-					}
-				}
-			}
 
 
 			se.hide();
