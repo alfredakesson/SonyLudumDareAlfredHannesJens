@@ -18,12 +18,17 @@ public abstract class World {
 	protected Context context;
 	protected ScoreClass sclass;
 	protected Random rand;
+	protected SharedResurces share;
 	public void removeTopSquare() {
 		squareList.removeFirst();
 	}
 	
 	public abstract int getStartPosX();
 	public abstract int getStartPosY();
+	
+	public World(SharedResurces share){
+		this.share = share;
+	}
 	
 	
 	public void newSquare() {

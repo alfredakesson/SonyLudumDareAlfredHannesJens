@@ -31,6 +31,7 @@ public final class R {
         public static final int ic_launcher=0x7f020006;
         public static final int light_01=0x7f020007;
         public static final int light_02=0x7f020008;
+        public static final int red_square=0x7f020009;
     }
     public static final class id {
         public static final int container=0x7f080000;

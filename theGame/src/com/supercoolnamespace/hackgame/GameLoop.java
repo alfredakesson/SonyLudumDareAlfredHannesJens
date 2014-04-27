@@ -59,9 +59,10 @@ public class GameLoop extends Screen{
 		Display display = wm.getDefaultDisplay();
 		displaySize = new Point();
 		display.getSize(displaySize);
-
-		upperWorld = new UpperWorld(context, displaySize);
-		lowerWorld = new LowerWorld(context, displaySize);
+		SharedResurces share = new SharedResurces();
+		
+		upperWorld = new UpperWorld(context, displaySize,share);
+		lowerWorld = new LowerWorld(context, displaySize,share);
 		
 		Tween.registerAccessor(Entity.class, new EntityTweener());
 

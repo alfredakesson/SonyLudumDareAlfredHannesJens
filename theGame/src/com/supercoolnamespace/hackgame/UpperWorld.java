@@ -10,7 +10,9 @@ import aurelienribon.tweenengine.TweenManager;
 
 public class UpperWorld extends World{
 
-	public UpperWorld(Context context, Point displaySize){
+	public UpperWorld(Context context, Point displaySize,SharedResurces share){
+		super(share);
+			
 		this.displaySize = displaySize;
 		rand = new Random();
 		squareList = new LinkedList<SquareEntity>();
