@@ -20,6 +20,7 @@ public abstract class World {
 	protected Context context;
 	protected Random rand;
 	protected SharedResurces share;
+	public Offset drawOffset;
 
 	public void removeTopSquare() {
 		squareList.removeFirst();
@@ -28,9 +29,12 @@ public abstract class World {
 	public abstract int getStartPosX();
 	public abstract int getStartPosY();
 	
-	public World(SharedResurces share){
+	public World(SharedResurces share, Offset theDrawOffset){
 		this.share = share;
+		this.drawOffset = drawOffset;
+		
 	}
+	
 	
 	
 	public void newSquare() {

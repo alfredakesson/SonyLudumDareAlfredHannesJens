@@ -53,6 +53,12 @@ public class SquareCallback implements TweenCallback {
 			{
 				Log.d("GAME OVER", "XXXX STILL PLAYING!");
 			}
+			
+			
+			world.drawOffset.decrease();
+			//world.drawOffset.increment();
+			
+			
 			se.hide();
 			world.removeTopSquare();	
 		}
