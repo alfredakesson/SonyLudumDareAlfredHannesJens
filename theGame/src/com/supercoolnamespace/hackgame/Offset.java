@@ -1,6 +1,7 @@
 package com.supercoolnamespace.hackgame;
 
 import android.graphics.Point;
+import android.util.Log;
 import entities.BlueFabric;
 import entities.RedFabric;
 
@@ -26,6 +27,7 @@ public class Offset {
 	}
 	
 	public float getOffset() {
+		Log.d("WTF", "kommer hit!");
 		return multiplier * groundLevel;
 	}
 	

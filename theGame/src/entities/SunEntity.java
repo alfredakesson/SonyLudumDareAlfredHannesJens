@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 
 import com.supercoolnamespace.hackgame.Entity;
+import com.supercoolnamespace.hackgame.Offset;
 
 public class SunEntity extends Entity{
 	
@@ -25,11 +26,10 @@ public class SunEntity extends Entity{
 	}
 
 	@Override
-	public void draw(Canvas c) {
+	public void draw(Canvas c, Offset theDrawOffset) {
 		
-
 		c.drawCircle((float) ((width-SUN_RADIUS) * Math.sin(rotation)) + width, (float) ((height-SUN_RADIUS) * Math.cos(rotation)) + height , SUN_RADIUS, paint);
-		
+		//theDrawOffset.getOffset(), 0);		
 	}
 
 }

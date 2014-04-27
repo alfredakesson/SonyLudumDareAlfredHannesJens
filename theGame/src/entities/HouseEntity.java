@@ -1,5 +1,6 @@
 package entities;
 
+import com.supercoolnamespace.hackgame.Offset;
 import com.supercoolnamespace.hackgame.R;
 
 import android.content.Context;
@@ -46,7 +47,7 @@ public class HouseEntity extends RectEntity{
 	
 
 	@Override
-	public void draw(Canvas c) {
+	public void draw(Canvas c, Offset theDrawOffset) {
 		if (drawTheScreen)
 			c.drawBitmap(building, x, y, null);
 			

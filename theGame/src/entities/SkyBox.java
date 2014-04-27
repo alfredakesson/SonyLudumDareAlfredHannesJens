@@ -1,6 +1,7 @@
 package entities;
 
 import com.supercoolnamespace.hackgame.Obscureable;
+import com.supercoolnamespace.hackgame.Offset;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -38,9 +39,14 @@ public class SkyBox extends RectEntity implements Obscureable {
 	}
 
 	@Override
-	public void draw(Canvas c) {
+	public void draw(Canvas c, Offset theDrawOffset) {
+
+		
+		rectF.offset(theDrawOffset.getOffset(), 0);
+
 		c.drawRect(rectF, paint);
 		c.drawRect(rectF, opacityPaint);
+		rectF.offset(-theDrawOffset.getOffset(), 0);
 	}
 
 	public void setOpacity(float newOpacity) {

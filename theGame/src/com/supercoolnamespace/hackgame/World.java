@@ -31,7 +31,7 @@ public abstract class World {
 	
 	public World(SharedResurces share, Offset theDrawOffset){
 		this.share = share;
-		this.drawOffset = drawOffset;
+		drawOffset = theDrawOffset;
 		
 	}
 	
@@ -62,7 +62,7 @@ public abstract class World {
 
 	public void drawAllSquares(Canvas c, float delta) {
 		for(SquareEntity square : squareList) {
-			square.draw(c);
+			square.draw(c, drawOffset);
 		}
 		Log.d("RAND", "sq size: "+ squareList.size());
 		manager.update(delta);
