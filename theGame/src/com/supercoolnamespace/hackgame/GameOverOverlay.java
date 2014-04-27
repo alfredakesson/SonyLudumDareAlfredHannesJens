@@ -65,6 +65,7 @@ public class GameOverOverlay extends Screen {
 
 				timeLeftToChange = 2f;
 				computeOffset(playAgainString);
+				currentState = STATE_SECOND;
 	
 		}
 	

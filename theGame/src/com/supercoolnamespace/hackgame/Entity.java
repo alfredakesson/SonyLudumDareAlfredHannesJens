@@ -7,9 +7,12 @@ public abstract class Entity {
 	protected float y; 
 	protected float rotation;
 	
+	protected float opacity;
+	
 	public Entity(float x, float y){
 		this.x = x;
 		this.y = y;
+		opacity = 1;
 	}
 	
 
@@ -39,5 +42,16 @@ public abstract class Entity {
 	public void setRotation(float newRotation) {
 		this.rotation = newRotation;
 	}
+
+
+	public float getOpacity() {
+		// TODO Auto-generated method stub
+		return opacity;
+	}
+	
+	public void setOpacity(float newOpacity){
+		this.opacity = newOpacity;
+	}
+	
 
 }
