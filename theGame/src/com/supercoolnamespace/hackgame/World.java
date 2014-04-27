@@ -85,7 +85,7 @@ public abstract class World {
 
 	public void handleTouch(float x, float y) {
 		for(SquareEntity sq : squareList) {
-			if(sq.isPressed(new Point((int)x, (int)y))) {
+			if(sq.isPressed(new Point((int)x, (int)y), drawOffset)) {
 				share.addSquare(sq.getColor());
 				Log.d("world", "Is pressed!");
 				sq.hide();

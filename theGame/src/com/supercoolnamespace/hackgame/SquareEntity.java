@@ -33,7 +33,7 @@ public class SquareEntity extends Entity {
 	@Override
 	public void draw(Canvas c, Offset theDrawOffset) {
 		if (drawTheScreen)
-			c.drawBitmap(bitmap, x + theDrawOffset.getOffset(), getRealY(), null);//x + theDrawOffset.getOffset()
+			c.drawBitmap(bitmap, x + theDrawOffset.getOffset(), getRealY(), null);
 		Log.d(TAG, "y+fill: " + (getRealY()));
 		// c.drawRect(10,10,10,10, new Paint(10));
 		// Log.d(TAG, "drawing an entity");
@@ -52,13 +52,13 @@ public class SquareEntity extends Entity {
 		return drawTheScreen;
 	}
 
-	public boolean isPressed(Point hitPt) {
+	public boolean isPressed(Point hitPt, Offset theDrawOffset) {
 		
 		int height= bitmap.getHeight();
 		int width = bitmap.getWidth();
 		
 		int yHit = hitPt.y;
-		int xHit = hitPt.x;
+		int xHit = hitPt.x - (int)theDrawOffset.getOffset();
 		
 		float realY = getRealY();
 		
