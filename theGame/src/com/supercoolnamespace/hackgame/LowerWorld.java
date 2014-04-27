@@ -4,6 +4,7 @@ import java.util.LinkedList;
 
 import android.content.Context;
 import android.graphics.Point;
+import android.util.Log;
 import aurelienribon.tweenengine.Tween;
 import aurelienribon.tweenengine.TweenManager;
 
@@ -11,6 +12,7 @@ public class LowerWorld extends World{
 
 	public LowerWorld(Context context, Point displaySize){
 		this.displaySize = displaySize;
+		Log.d("HOJ", "dispSize y : " + displaySize.y);
 		squareList = new LinkedList<SquareEntity>();
 		Tween.registerAccessor(Entity.class, new EntityTweener());
 		this.context = context;
@@ -27,7 +29,7 @@ public class LowerWorld extends World{
 	@Override
 	public int getStartPosY() {
 		// TODO Auto-generated method stub
-		return 200;
+		return displaySize.y - 200;
 	}
 	
 	

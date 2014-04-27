@@ -30,7 +30,7 @@ public class GameLoop extends Screen{
 	public boolean sunUp;
 
 	private final float NIGHT_START_ANGLE = 0.5f;
-	private final float DAWN_TIME = 0.5f;
+	private final float DAWN_TIME = .05f;
 
 	private final int SKY_DAY = Color.rgb(135, 206, 235);
 	private final int SKY_NIGHT = Color.rgb(18, 129, 255);
@@ -53,9 +53,6 @@ public class GameLoop extends Screen{
 		super(context, null);
 		this.context = context;
 		
-		upperWorld = new UpperWorld(context, displaySize);
-		lowerWorld = new LowerWorld(context, displaySize);
-		
 		// Get the screen size of the device
 		WindowManager wm = (WindowManager) context
 				.getSystemService(Context.WINDOW_SERVICE);
@@ -63,6 +60,9 @@ public class GameLoop extends Screen{
 		displaySize = new Point();
 		display.getSize(displaySize);
 
+		upperWorld = new UpperWorld(context, displaySize);
+		lowerWorld = new LowerWorld(context, displaySize);
+		
 		Tween.registerAccessor(Entity.class, new EntityTweener());
 
 		Tween.registerAccessor(SkyBox.class, new OpacityTweener());
@@ -83,16 +83,16 @@ public class GameLoop extends Screen{
 
 		// Create the houses
 		houses = new ArrayList<HouseEntity>();
-		HouseEntity tempHouse = new HouseEntity(400, 50, 300, 150);
+		HouseEntity tempHouse = new HouseEntity(context, 400, 50, 300, 150);
 
 		tempHouse.setRotation(-3);
 		houses.add(tempHouse);
 
-		tempHouse = new HouseEntity(100, 50, 300, 150);
+		tempHouse = new HouseEntity(context, 100, 50, 300, 150);
 		tempHouse.setRotation(4);
 		houses.add(tempHouse);
 
-		houseEntity = new entities.HouseEntity(100, 100, 50, 50);
+		houseEntity = new entities.HouseEntity(context, 100, 100, 50, 50);
 		colorManager = new TweenManager();
 
 
