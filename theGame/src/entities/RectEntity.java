@@ -13,9 +13,6 @@ public abstract class RectEntity extends Entity {
 		super(x, y);
 
 		rectF = new RectF(x, y + height, x + width, y);
-		
-		
-
 	}
 
 	@Override

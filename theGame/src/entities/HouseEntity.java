@@ -37,6 +37,9 @@ public class HouseEntity extends RectEntity{
 		building= BitmapFactory.decodeResource(ctx.getResources(),
 				R.drawable.building_01);
 		
+		building = getResizedBitmap(building, 40*height, 40*width);
+		 
+		
 		
 	}
 	
@@ -67,5 +70,30 @@ public class HouseEntity extends RectEntity{
 //		
 		
 	}
+	public Bitmap getResizedBitmap(Bitmap bm, float newHeight, float newWidth) {
+		 
+		int width = bm.getWidth();
+		 
+		int height = bm.getHeight();
+		 
+		float scaleWidth = ((float) newWidth) / width;
+		 
+		float scaleHeight = ((float) newHeight) / height;
+		 
+		// CREATE A MATRIX FOR THE MANIPULATION
+		 
+		Matrix matrix = new Matrix();
+		 
+		// RESIZE THE BIT MAP
+		 
+		matrix.postScale(scaleWidth, scaleHeight);
+		 
+		// RECREATE THE NEW BITMAP
+		 
+		Bitmap resizedBitmap = Bitmap.createBitmap(bm, 0, 0, width, height, matrix, false);
+		 
+		return resizedBitmap;
+		 
+		}
 
 }

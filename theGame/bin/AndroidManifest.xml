@@ -6,6 +6,8 @@
     android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
     
 
+    <supports-screens android:xlargeScreens="true" />
+    
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="14" />

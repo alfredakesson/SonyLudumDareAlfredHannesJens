@@ -30,7 +30,7 @@ public class GameLoop extends Screen{
 	public boolean sunUp;
 
 	private final float NIGHT_START_ANGLE = 0.5f;
-	private final float DAWN_TIME = .05f;
+	private final float DAWN_TIME = 0.5f;
 
 	private final int SKY_DAY = Color.rgb(135, 206, 235);
 	private final int SKY_NIGHT = Color.rgb(18, 129, 255);
@@ -83,16 +83,16 @@ public class GameLoop extends Screen{
 
 		// Create the houses
 		houses = new ArrayList<HouseEntity>();
-		HouseEntity tempHouse = new HouseEntity(context, 400, 50, 300, 150);
+		HouseEntity tempHouse = new HouseEntity(context, 10, 20, 2, 2);
 
 		tempHouse.setRotation(-3);
 		houses.add(tempHouse);
 
-		tempHouse = new HouseEntity(context, 100, 50, 300, 150);
-		tempHouse.setRotation(4);
-		houses.add(tempHouse);
+		//tempHouse = new HouseEntity(context, 100, 50, 5, 50);
+		//tempHouse.setRotation(4);
+		//houses.add(tempHouse);
 
-		houseEntity = new entities.HouseEntity(context, 100, 100, 50, 50);
+		//houseEntity = new entities.HouseEntity(context, 100, 100, 50, 50);
 		colorManager = new TweenManager();
 
 
@@ -104,19 +104,16 @@ public class GameLoop extends Screen{
 
 	public void draw(Canvas c, float delta) {
 
-		drawSun();
 
 		for (SkyBox sb : skyboxes) {
 			sb.draw(c);
 		}
 
-		houseEntity.setRotation(houseEntity.getRotation() + delta);
-
-		sunEntity.setRotation(sunEntity.getRotation() + delta);
+		drawSun();
+		sunEntity.setRotation(sunEntity.getRotation() + delta*0.1f);
 		sunEntity.draw(c);
 
 		groundEntity.draw(c);
-		houseEntity.draw(c);
 
 		for (HouseEntity he : houses) {
 			he.draw(c);
