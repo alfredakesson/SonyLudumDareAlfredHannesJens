@@ -12,6 +12,8 @@ import aurelienribon.tweenengine.TweenCallback;
 import aurelienribon.tweenengine.TweenManager;
 
 public abstract class World {
+	public static final int UpperWorld = 0;
+	public static final int LowerWorld = 1;
 	protected Point displaySize;
 	protected LinkedList<SquareEntity> squareList;
 	protected TweenManager manager;
@@ -33,7 +35,11 @@ public abstract class World {
 	
 	
 	public void newSquare() {
-		int color = rand.nextInt(1000)%2;
+		
+		int color = share.getColor();
+		if(color == -1)
+			color = rand.nextInt(1000)%2;
+		
 		SquareEntity temp = new SquareEntity(context, getStartPosX(), 0, color);
 		squareList.add(temp);
 		Tween.to(temp, EntityTweener.POSITION_XY, 0.5f).target(getStartPosX(), getStartPosY())
