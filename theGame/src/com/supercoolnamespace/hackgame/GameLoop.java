@@ -12,15 +12,18 @@ import android.view.MotionEvent;
 import android.view.WindowManager;
 import aurelienribon.tweenengine.Tween;
 import aurelienribon.tweenengine.TweenManager;
+import entities.BlueFabric;
 import entities.GroundEntity;
 import entities.HouseEntity;
+import entities.RedFabric;
 import entities.SkyBox;
 import entities.SunEntity;
 
 public class GameLoop extends Screen{
 
 	private static final String TAG = MainActivity.class.getSimpleName();
-
+	
+	private Entity blueHause;
 	
 	private World upperWorld;
 	private World lowerWorld;
@@ -46,6 +49,8 @@ public class GameLoop extends Screen{
 
 
 	private TweenManager colorManager;
+
+	private RedFabric redHause;
 
 	
 
@@ -97,6 +102,8 @@ public class GameLoop extends Screen{
 
 		//houseEntity = new entities.HouseEntity(context, 100, 100, 50, 50);
 		colorManager = new TweenManager();
+		blueHause = new BlueFabric(550,1400);
+		redHause = new RedFabric(220, 200);
 
 
 		
@@ -129,7 +136,9 @@ public class GameLoop extends Screen{
 			lowerWorld.drawAllSquares(c, delta);
 
 		colorManager.update(delta);
-
+		
+		blueHause.draw(c);
+		redHause.draw(c);
 		//manager.update(delta);
 
 	}
