@@ -12,12 +12,14 @@ import android.graphics.drawable.Drawable.Callback;
 import android.view.MotionEvent;
 
 public class IntroScreen extends Screen {
+	
+	private final float TIME_BETWEEN_TEXT = 3f;
 
 	private float timeLeft = 3f;
 
 	private Paint paint;
 
-	private String[] strings = { "One World", "Connected", "Under the", "Same Sun" };
+	private String[] strings = { "One World", "Connected", "Under The", "Same Sun" };
 
 	public boolean isDead = false;
 
@@ -28,6 +30,8 @@ public class IntroScreen extends Screen {
 	private int currentString = 0;
 	
 	private int textOffsetX, textOffsetY;
+	
+	
 
 	public boolean isDead() {
 		return isDead;
@@ -42,7 +46,7 @@ public class IntroScreen extends Screen {
 		textPaint.setColor(Color.WHITE);
 		textPaint.setTextSize((float) (displaySize.x*0.3));
 
-		timeLeftToChange = 2f;
+		timeLeftToChange = TIME_BETWEEN_TEXT;
 		
 		computeOffset();
 	}
@@ -57,7 +61,7 @@ public class IntroScreen extends Screen {
 
 			if (currentString < strings.length-1) {
 				currentString++;
-				timeLeftToChange = 2f;
+				timeLeftToChange = TIME_BETWEEN_TEXT;
 				computeOffset();
 				
 			}
