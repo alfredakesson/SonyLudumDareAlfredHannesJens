@@ -35,7 +35,12 @@ public class SharedResurces {
 	}
 
 	public int getColor() {
-		return currentWorld;
+		if(squaresToDraw == null || squaresToDraw.size() < 1) {
+			return -1;
+		}
+		else {
+			return squaresToDraw.remove(0);
+		}
 	}
 
 }
