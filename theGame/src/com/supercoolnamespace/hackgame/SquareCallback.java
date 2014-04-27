@@ -58,21 +58,20 @@ public class SquareCallback implements TweenCallback {
 
 
 			
-			if(world.share.currentWorld == world.UpperWorld) {
-				if(se.getColor() == SquareEntity.BLUE) {
-					world.drawOffset.increment();
-				}
-				else if(se.getColor() == SquareEntity.RED) {
-					world.drawOffset.decrease();
-				}
-					
-			}
-			else {
-				if(se.getColor() == SquareEntity.BLUE) {
-					world.drawOffset.decrease();
-				}
-				else if(se.getColor() == SquareEntity.RED) {
-					world.drawOffset.increment();
+			if(se.hidden()) {
+				if (world.share.currentWorld == world.UpperWorld) {
+					if (se.getColor() == SquareEntity.BLUE) {
+						world.drawOffset.increment();
+					} else if (se.getColor() == SquareEntity.RED) {
+						world.drawOffset.decrease();
+					}
+
+				} else {
+					if (se.getColor() == SquareEntity.BLUE) {
+						world.drawOffset.decrease();
+					} else if (se.getColor() == SquareEntity.RED) {
+						world.drawOffset.increment();
+					}
 				}
 			}
 

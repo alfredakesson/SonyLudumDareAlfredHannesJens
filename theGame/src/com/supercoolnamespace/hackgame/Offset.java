@@ -8,14 +8,14 @@ import entities.RedFabric;
 public class Offset {
 	private int groundLevel;
 	private float multiplier;
-	
+	private int nbrStep = 5;
 	public Offset(BlueFabric blueHause, Point displaySize) {
 		groundLevel = 0;
 		
 		float xDisp = (float)displaySize.x;
 		float blueX = (blueHause.getX() + blueHause.getOffset());
 		float tot = xDisp - blueX;
-		multiplier = tot / 10; 
+		multiplier = tot / nbrStep; 
 	}
 	
 	public void increment(){
