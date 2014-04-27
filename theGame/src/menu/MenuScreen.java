@@ -46,7 +46,7 @@ public class MenuScreen extends Screen {
 		for (int i = 0; i < 3; i++) {
 			int top = 100 + 400 * i;
 			
-			buttons.add(new MenuButton(-30, -30, (int)xSize, 300, "starta spel", paint));
+			buttons.add(new MenuButton(-30, -30, (int)xSize, 300, "start game", paint));
 			//c.drawText("MUHUHU", xOffset, top, textPaint);
 		}
 		
