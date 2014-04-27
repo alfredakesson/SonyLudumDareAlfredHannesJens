@@ -19,6 +19,7 @@ public class LowerWorld extends World{
 		this.context = context;
 		manager = new TweenManager();
 		newSquare();
+		sclass = new ScoreClass(context);
 	}
 
 	@Override

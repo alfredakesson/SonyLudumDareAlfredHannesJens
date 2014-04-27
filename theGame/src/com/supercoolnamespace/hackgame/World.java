@@ -16,7 +16,8 @@ public abstract class World {
 	protected LinkedList<SquareEntity> squareList;
 	protected TweenManager manager;
 	protected Context context;
-	
+	protected ScoreClass sclass;
+
 	public void removeTopSquare() {
 		squareList.removeFirst();
 	}
@@ -63,7 +64,8 @@ public abstract class World {
 			if(sq.isPressed(new Point((int)x, (int)y))) {
 				Log.d("world", "Is pressed!");
 				sq.hide();
-				(new ScoreClass(context)).setScore(5);
+				sclass.lowerScore();
+				
 			}
 		}
 		

@@ -6,7 +6,7 @@ import android.content.Intent;
 public class ScoreClass {
 	
 	Context con ;
-	int currentScore;
+	int currentScore = 6;
 	
 	public ScoreClass(Context con) {
 		this.con = con;

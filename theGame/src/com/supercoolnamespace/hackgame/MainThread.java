@@ -48,7 +48,6 @@ public class MainThread extends Thread {
 		currentScreen = new MenuScreen(gamePanel.getContext(), this);
 		
 		context = gamePanel.getContext();
-		(new ScoreClass(context)).setScore(4);
 
 	}
 
