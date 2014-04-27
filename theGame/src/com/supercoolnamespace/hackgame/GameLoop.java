@@ -24,7 +24,7 @@ public class GameLoop extends Screen{
 	private static final String TAG = MainActivity.class.getSimpleName();
 	
 	private Offset theDrawOffset;
-	private Entity blueHause;
+	private BlueFabric blueHause;
 	
 	private World upperWorld;
 	private World lowerWorld;
@@ -60,6 +60,10 @@ public class GameLoop extends Screen{
 		super(context, null);
 		this.context = context;
 		
+		blueHause = new BlueFabric(550,1400);
+		redHause = new RedFabric(220, 200);
+		
+
 		// Get the screen size of the device
 		WindowManager wm = (WindowManager) context
 				.getSystemService(Context.WINDOW_SERVICE);
@@ -68,14 +72,13 @@ public class GameLoop extends Screen{
 		display.getSize(displaySize);
 		share = new SharedResurces(context);
 		
-		upperWorld = new UpperWorld(context, displaySize,share);
-		lowerWorld = new LowerWorld(context, displaySize,share);
+		upperWorld = new UpperWorld(context, displaySize,share, theDrawOffset);
+		lowerWorld = new LowerWorld(context, displaySize,share, theDrawOffset);
 		
-		
+		theDrawOffset = new Offset(blueHause, displaySize);
 
 		
 		Tween.registerAccessor(Entity.class, new EntityTweener());
-
 		Tween.registerAccessor(SkyBox.class, new OpacityTweener());
 		
 
@@ -107,11 +110,9 @@ public class GameLoop extends Screen{
 
 		//houseEntity = new entities.HouseEntity(context, 100, 100, 50, 50);
 		colorManager = new TweenManager();
-		blueHause = new BlueFabric(550,1400);
-		redHause = new RedFabric(220, 200);
 
 
-		//theDrawOffset = new Offset();
+		
 		
 	}
 
@@ -119,7 +120,7 @@ public class GameLoop extends Screen{
 
 	public void draw(Canvas c, float delta) {
 
-
+		
 		for (SkyBox sb : skyboxes) {
 			sb.draw(c);
 		}
@@ -156,7 +157,7 @@ public class GameLoop extends Screen{
 			Tween.to(skyboxes.get(0), OpacityTweener.TWEEN_OPACITY, DAWN_TIME)
 					.target(SkyBox.OPACITY_NIGHT).start(colorManager);
 			sunUp = true;
-			upperWorld = new UpperWorld(context, displaySize,share);
+			upperWorld = new UpperWorld(context, displaySize,share, theDrawOffset);
 			share.updateWorld(c);
 		}
 
@@ -167,7 +168,7 @@ public class GameLoop extends Screen{
 					.target(SkyBox.OPACITY_NIGHT).start(colorManager);
 
 			sunUp = false;
-			lowerWorld = new LowerWorld(context, displaySize,share);
+			lowerWorld = new LowerWorld(context, displaySize,share, theDrawOffset);
 			share.updateWorld(c);;
 		}
 	
