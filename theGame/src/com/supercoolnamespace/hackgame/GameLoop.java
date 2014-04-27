@@ -61,6 +61,7 @@ public class GameLoop extends Screen{
 	public GameLoop(Context context) {
 		super(context, null);
 		this.context = context;
+		gameOver = null;
 		
 		blueHause = new BlueFabric(550,1400);
 		redHause = new RedFabric(220, 200);
@@ -150,7 +151,7 @@ public class GameLoop extends Screen{
 		blueHause.draw(c, theDrawOffset);
 		redHause.draw(c, theDrawOffset);
 		//manager.update(delta);
-		if(gameOver ==null  && (share.sc.currentBalance < 0 || share.sc.currentBalance > 10)){
+		if((gameOver == null && (share.sc.currentBalance < 0 || share.sc.currentBalance > 10))){
 			gameOver = new GameOverOverlay(context, callback, share.sc.currentScore);
 			gameOver.draw(c, delta);
 			
