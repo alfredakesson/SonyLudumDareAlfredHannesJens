@@ -17,7 +17,7 @@ public class IntroScreen extends Screen {
 
 	private Paint paint;
 
-	private String[] strings = { "One World", "Connected", "By Surface" };
+	private String[] strings = { "One World", "Connected", "Under the", "Same Sun" };
 
 	public boolean isDead = false;
 
