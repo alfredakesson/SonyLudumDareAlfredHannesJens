@@ -72,7 +72,7 @@ public class GameLoop extends Screen{
 		lowerWorld = new LowerWorld(context, displaySize,share);
 		
 		
-		theDrawOffset = new Offset();
+		theDrawOffset = new Offset(blueHause, redHause, displaySize);
 		
 		
 		Tween.registerAccessor(Entity.class, new EntityTweener());
