@@ -99,6 +99,7 @@ public class MainThread extends Thread {
 
 					} else {
 						System.out.println("LOST FRAME");
+						System.exit(-1);
 					}
 
 				}
