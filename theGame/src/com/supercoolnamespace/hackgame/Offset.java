@@ -11,6 +11,9 @@ public class Offset {
 	public Offset(Entity blueHause, RedFabric redHause, Point displaySize) {
 		groundLevel = 0;
 		
+		
+		//kolla x-värdet
+		int mid = displaySize.x/2;
 	}
 	
 	
