@@ -8,6 +8,8 @@ import com.supercoolnamespace.hackgame.Entity;
 
 public class BlueFabric extends Entity {
 
+	private int offset = 300;
+	
 	public BlueFabric(float x, float y) {
 		super(x, y);
 		// TODO Auto-generated constructor stub
@@ -17,12 +19,15 @@ public class BlueFabric extends Entity {
 	public void draw(Canvas c) {
 		Paint p = new Paint();
 		p.setColor(Color.GREEN);
-		c.drawRect(x, y, x+300, y+200, p);
+		c.drawRect(x, y, x+offset, y+200, p);
 		p = new Paint();
 		p.setColor(Color.BLUE);
 		c.drawRect(x+120, y+50, x+260, y+150, p);
-
 		
+	}
+	
+	public int getOffset(){
+		return offset;
 	}
 
 }

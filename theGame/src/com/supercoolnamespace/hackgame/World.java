@@ -40,8 +40,8 @@ public abstract class World {
 		
 		SquareEntity temp = new SquareEntity(context, getStartPosX(), 0, color);
 		squareList.add(temp);
-		Tween.to(temp, EntityTweener.POSITION_XY, 0.1f).target(getStartPosX(), getStartPosY())
-				.repeat(5, 0.2f).start(manager)
+		Tween.to(temp, EntityTweener.POSITION_XY, 0.5f).target(getStartPosX(), getStartPosY())
+				.repeat(5, 0.5f).start(manager)
 				.setCallback(new SquareCallback(temp, this))
 				.setCallbackTriggers(TweenCallback.ANY);
 	}
