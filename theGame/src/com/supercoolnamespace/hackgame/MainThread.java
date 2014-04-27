@@ -81,7 +81,7 @@ public class MainThread extends Thread {
 							oldTime = System.nanoTime();
 							gameLoop.draw(c, (float) deltaTime / 1000000000);
 						}
-						else if (!currentScreen.isDead()){
+						else {
 							oldTime = System.nanoTime();
 							currentScreen.draw(c, (float) deltaTime / 1000000000);
 						}
