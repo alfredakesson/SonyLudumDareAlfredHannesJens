@@ -1,4 +1,4 @@
-
+theGame/.gitignore
 theGame/bin/classes/com/supercoolnamespace/hackgame/R$string.class
 
 theGame/bin/classes/com/supercoolnamespace/hackgame/R$string.class
@@ -6,6 +6,38 @@ theGame/bin/classes/com/supercoolnamespace/hackgame/R$string.class
 theGame/bin/classes/com/supercoolnamespace/hackgame/R$string.class
 
 theGame/bin/classes/com/supercoolnamespace/hackgame/R$style.class
+
+*.class
+
+theGame/bin/classes/com/supercoolnamespace/hackgame/R$drawable.class
+
+theGame/bin/classes/com/supercoolnamespace/hackgame/R$id.class
+
+theGame/bin/classes/com/supercoolnamespace/hackgame/R$layout.class
+
+theGame/bin/classes/com/supercoolnamespace/hackgame/R$menu.class
+
+theGame/bin/classes/com/supercoolnamespace/hackgame/R$string.class
+
+theGame/bin/classes/com/supercoolnamespace/hackgame/R$style.class
+
+theGame/gen/com/supercoolnamespace/hackgame/R.java
+
+theGame/bin/classes/com/supercoolnamespace/hackgame/R$drawable.class
+
+theGame/bin/classes/com/supercoolnamespace/hackgame/R$drawable.class
+
+theGame/bin/classes/com/supercoolnamespace/hackgame/R$id.class
+
+theGame/bin/classes/com/supercoolnamespace/hackgame/R$layout.class
+
+theGame/bin/classes/com/supercoolnamespace/hackgame/R$menu.class
+
+theGame/bin/classes/com/supercoolnamespace/hackgame/R$string.class
+
+theGame/bin/classes/com/supercoolnamespace/hackgame/R$style.class
+
+theGame/gen/com/supercoolnamespace/hackgame/R.java
 
 *.class
 

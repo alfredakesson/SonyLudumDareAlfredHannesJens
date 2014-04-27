@@ -14,9 +14,11 @@ public class SquareEntity extends Entity {
 	Bitmap bitmap;
 	private boolean drawTheScreen = true;
 	private static final String TAG = MainActivity.class.getSimpleName();
+	private int color;
 
 	public SquareEntity(Context ctx, float x, float y, int color) {
 		super(x, y);
+		this.color = color;
 		if(color == BLUE) {
 			bitmap = BitmapFactory.decodeResource(ctx.getResources(),
 					R.drawable.blue_square);			
@@ -44,6 +46,10 @@ public class SquareEntity extends Entity {
 	public void hide() {
 		drawTheScreen = false;
 
+	}
+	
+	public boolean hidden(){
+		return drawTheScreen;
 	}
 
 	public boolean isPressed(Point hitPt) {
@@ -74,5 +80,9 @@ public class SquareEntity extends Entity {
 
 	protected  float getRealY() {
 		return y + fill;
+	}
+	
+	public int getColor() {
+		return color;
 	}
 }

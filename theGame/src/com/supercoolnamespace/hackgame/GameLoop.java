@@ -44,6 +44,7 @@ public class GameLoop extends Screen{
 
 	private ArrayList<SkyBox> skyboxes;
 	private ArrayList<HouseEntity> houses;
+	private SharedResurces share;
 
 	private Context context;
 
@@ -64,7 +65,7 @@ public class GameLoop extends Screen{
 		Display display = wm.getDefaultDisplay();
 		displaySize = new Point();
 		display.getSize(displaySize);
-		SharedResurces share = new SharedResurces();
+		share = new SharedResurces();
 		
 		upperWorld = new UpperWorld(context, displaySize,share);
 		lowerWorld = new LowerWorld(context, displaySize,share);
@@ -119,8 +120,8 @@ public class GameLoop extends Screen{
 			sb.draw(c);
 		}
 
-		drawSun();
-		sunEntity.setRotation(sunEntity.getRotation() + delta*0.1f);
+		drawSun(c);
+		sunEntity.setRotation(sunEntity.getRotation() + delta*2);///CHANGE THIS VALUE LATER!!!!
 		sunEntity.draw(c);
 
 		groundEntity.draw(c);
@@ -145,7 +146,7 @@ public class GameLoop extends Screen{
 
 
 
-	private void drawSun() {
+	private void drawSun(Canvas c) {
 		if (!sunUp && Math.sin(sunEntity.rotation + NIGHT_START_ANGLE) > 0) {
 
 			Tween.to(skyboxes.get(1), OpacityTweener.TWEEN_OPACITY, DAWN_TIME)
@@ -153,6 +154,8 @@ public class GameLoop extends Screen{
 			Tween.to(skyboxes.get(0), OpacityTweener.TWEEN_OPACITY, DAWN_TIME)
 					.target(SkyBox.OPACITY_NIGHT).start(colorManager);
 			sunUp = true;
+			upperWorld = new UpperWorld(context, displaySize,share);
+			share.drawRemovedSquares(c);
 		}
 
 		if (sunUp && Math.sin(sunEntity.rotation + NIGHT_START_ANGLE) < 0) {
@@ -162,7 +165,11 @@ public class GameLoop extends Screen{
 					.target(SkyBox.OPACITY_NIGHT).start(colorManager);
 
 			sunUp = false;
+			lowerWorld = new LowerWorld(context, displaySize,share);
+			share.drawRemovedSquares(c);
 		}
+	
+		
 	}
 
 
@@ -171,6 +178,7 @@ public class GameLoop extends Screen{
 	public void touch(MotionEvent event) {
 		float y = event.getY();
 		float x = event.getX();
+		Log.d("GAMELOP", "screen: " + displaySize.x + " " + displaySize.y );
 		Log.d("GAMELOOP", "Is pressed! coords: (" + x + "," + y + ")");
 		upperWorld.handleTouch(x, y);
 		lowerWorld.handleTouch(x, y);

@@ -19,6 +19,7 @@ public abstract class World {
 	protected ScoreClass sclass;
 	protected Random rand;
 	protected SharedResurces share;
+
 	public void removeTopSquare() {
 		squareList.removeFirst();
 	}
@@ -50,27 +51,29 @@ public abstract class World {
 		manager.update(delta);
 		
 	}
-	
-	private void shakeASquare(Canvas c, float delta, SquareEntity sqEntity) {
-
-		Random rand = new Random();
-		int rotation = rand.nextInt(10);
-		if (rotation > 5)
-			rotation *= -1;
-		sqEntity.setRotation(rotation);
-
-		int pos = EntityTweener.POSITION_XY;
-
-		sqEntity.setRotation(-rotation);
-
-	}
+//	
+//	private void shakeASquare(Canvas c, float delta, SquareEntity sqEntity) {
+//
+//		Random rand = new Random();
+//		int rotation = rand.nextInt(10);
+//		if (rotation > 5)
+//			rotation *= -1;
+//		sqEntity.setRotation(rotation);
+//
+//		int pos = EntityTweener.POSITION_XY;
+//
+//		sqEntity.setRotation(-rotation);
+//
+//	}
 
 	public void handleTouch(float x, float y) {
 		for(SquareEntity sq : squareList) {
 			if(sq.isPressed(new Point((int)x, (int)y))) {
+				share.addSquare(sq.getColor());
 				Log.d("world", "Is pressed!");
 				sq.hide();
 				sclass.lowerScore();
+				break;
 				
 			}
 		}
