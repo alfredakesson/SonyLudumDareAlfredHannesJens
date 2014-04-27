@@ -50,6 +50,9 @@ public class MenuScreen extends Screen {
 			//c.drawText("MUHUHU", xOffset, top, textPaint);
 		}
 		
+		
+		buttons.add(new MenuButton(0, -300, (int)xSize, 300, "Under the", paint));
+		buttons.add(new MenuButton(100, -100, (int)xSize, 300, "Sun", paint));
 	}
 
 	public void touch(MotionEvent event) {
@@ -64,12 +67,17 @@ public class MenuScreen extends Screen {
 
 	public void draw(Canvas c, float delta) {
 		c.drawRect(0, 0, c.getWidth(), c.getHeight(), backgroundPaint);
-
-
 		
-		for(MenuButton mb : buttons){
-			mb.draw(c);
-		}
+		buttons.get(0).draw(c);
+		
+		
+		
+
+		c.rotate(180, c.getWidth()/2, c.getHeight()/2);
+		
+		buttons.get(1).draw(c);
+		buttons.get(2).draw(c);
+		
 
 	}
 
