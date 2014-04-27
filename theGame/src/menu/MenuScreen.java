@@ -43,7 +43,7 @@ public class MenuScreen extends Screen {
 		
 		buttons = new ArrayList<MenuButton>();
 		
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < 1; i++) {
 			int top = 100 + 400 * i;
 			
 			buttons.add(new MenuButton(-30, -30, (int)xSize, 300, "start game", paint));

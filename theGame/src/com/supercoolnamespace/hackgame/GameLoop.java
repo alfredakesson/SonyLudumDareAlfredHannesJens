@@ -87,9 +87,9 @@ public class GameLoop extends Screen{
 		// Create the skyboxes
 		skyboxes = new ArrayList<SkyBox>();
 
-		skyboxes.add(new SkyBox(0, 0, displaySize.x / 2, displaySize.y, SKY_DAY));
+		skyboxes.add(new SkyBox(-displaySize.x/2, 0, displaySize.x , displaySize.y, SKY_DAY));
 
-		skyboxes.add(new SkyBox(displaySize.x / 2, 0, displaySize.x / 2,
+		skyboxes.add(new SkyBox(displaySize.x / 2, 0, displaySize.x,
 				displaySize.y, SKY_DAY));
 		
 		skyboxes.get(1).setOpacity(SkyBox.OPACITY_DAY);
