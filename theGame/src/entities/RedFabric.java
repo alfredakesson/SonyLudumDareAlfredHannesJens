@@ -17,12 +17,8 @@ public class RedFabric extends Entity {
 	@Override
 	public void draw(Canvas c, Offset theDrawOffset) {
 		Paint p = new Paint();
-		p.setColor(Color.GREEN);
+		p.setColor(Color.rgb(20, 20, 20));
 		c.drawRect(x + theDrawOffset.getOffset(), y, x+300 + theDrawOffset.getOffset(), y+200, p);
-		p = new Paint();
-		p.setColor(Color.RED);
-		c.drawRect(x+40 + theDrawOffset.getOffset(), y+50, x+180 + theDrawOffset.getOffset(), y+150, p);
-
 	}
 
 }
