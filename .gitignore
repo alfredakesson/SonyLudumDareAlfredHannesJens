@@ -38,3 +38,5 @@ theGame/bin/classes/com/supercoolnamespace/hackgame/R$string.class
 theGame/bin/classes/com/supercoolnamespace/hackgame/R$style.class
 
 theGame/gen/com/supercoolnamespace/hackgame/R.java
+
+*.class
