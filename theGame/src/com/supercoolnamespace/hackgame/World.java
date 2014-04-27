@@ -52,7 +52,7 @@ public abstract class World {
 	protected int getColorForSquare() {
 		int color = share.getColor();
 		if(color == -1)
-			color = rand.nextInt(1000)%2;
+			color = rand.nextInt(1000)%6;
 		else
 			Log.d("TAG", "color is: " + color);
 		
