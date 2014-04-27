@@ -18,7 +18,6 @@ public abstract class World {
 	protected LinkedList<SquareEntity> squareList;
 	protected TweenManager manager;
 	protected Context context;
-	protected ScoreClass sclass;
 	protected Random rand;
 	protected SharedResurces share;
 	public Offset drawOffset;

@@ -28,9 +28,8 @@ public class SunEntity extends Entity{
 	@Override
 	public void draw(Canvas c, Offset theDrawOffset) {
 		
-
 		c.drawCircle((float) ((width-SUN_RADIUS) * Math.sin(rotation)) + width, (float) ((height-SUN_RADIUS) * Math.cos(rotation)) + height , SUN_RADIUS, paint);
-		
+		//theDrawOffset.getOffset(), 0);		
 	}
 
 }

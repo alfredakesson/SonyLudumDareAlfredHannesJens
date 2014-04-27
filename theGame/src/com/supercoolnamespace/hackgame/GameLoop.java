@@ -54,6 +54,8 @@ public class GameLoop extends Screen{
 
 	private RedFabric redHause;
 
+	private GameOverOverlay gameOver;
+
 	
 
 	public GameLoop(Context context) {
@@ -114,6 +116,8 @@ public class GameLoop extends Screen{
 
 		
 		
+		
+		
 	}
 
 	
@@ -146,7 +150,13 @@ public class GameLoop extends Screen{
 		blueHause.draw(c, theDrawOffset);
 		redHause.draw(c, theDrawOffset);
 		//manager.update(delta);
-
+		if(gameOver ==null  && (share.sc.currentBalance < 0 || share.sc.currentBalance > 10)){
+			gameOver = new GameOverOverlay(context, callback, share.sc.currentScore);
+			gameOver.draw(c, delta);
+			
+		}
+		if(gameOver != null)
+			gameOver.draw(c, delta);
 	}
 
 	private void drawSun(Canvas c) {

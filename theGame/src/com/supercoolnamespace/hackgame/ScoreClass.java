@@ -7,6 +7,7 @@ import android.util.Log;
 public class ScoreClass {
 	
 	Context con ;
+	int currentBalance = 5;
 	int currentScore = 0;
 	
 	public ScoreClass(Context con) {
@@ -14,8 +15,8 @@ public class ScoreClass {
 	}
 	
 	public void setScore(int nbr){
-		currentScore = nbr;
-		Log.d("ALfred", "Nu score" + currentScore);
+		currentBalance = nbr;
+		Log.d("ALfred", "Nu score" + currentBalance);
 	    Intent intent = new Intent("com.supercoolnamespace.IT_A_BOY");
 	    intent.putExtra(Intent.EXTRA_TEXT, "" + nbr);
 		con.sendBroadcast(intent);
@@ -26,11 +27,13 @@ public class ScoreClass {
 	}
 	
 	public void lowerScore(){
-		setScore(currentScore - 1);
+		currentScore++;
+		setScore(currentBalance - 1);
 	}
 	
 	public void higherScore(){
-		setScore(currentScore + 1);
+		currentScore++;
+		setScore(currentBalance + 1);
 	}
 	
 	

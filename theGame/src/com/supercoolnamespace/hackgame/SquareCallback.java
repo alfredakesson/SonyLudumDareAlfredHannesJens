@@ -54,17 +54,29 @@ public class SquareCallback implements TweenCallback {
 				Log.d("GAME OVER", "XXXX STILL PLAYING!");
 			}
 			
-			if(world == null)
-			{
-				Log.d("WTF", "world is null");
-			}
-			else if(world.drawOffset == null){
-				Log.d("WTF", "drawoffset is null");
-			}
-			world.drawOffset.decrease();
-			//world.drawOffset.increment();
 			
+
+
 			
+			if(world.share.currentWorld == world.UpperWorld) {
+				if(se.getColor() == SquareEntity.BLUE) {
+					world.drawOffset.increment();
+				}
+				else if(se.getColor() == SquareEntity.RED) {
+					world.drawOffset.decrease();
+				}
+					
+			}
+			else {
+				if(se.getColor() == SquareEntity.BLUE) {
+					world.drawOffset.decrease();
+				}
+				else if(se.getColor() == SquareEntity.RED) {
+					world.drawOffset.increment();
+				}
+			}
+
+
 			se.hide();
 			world.removeTopSquare();	
 		}
