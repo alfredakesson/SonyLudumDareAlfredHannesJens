@@ -50,11 +50,6 @@ public class IntroScreen extends Screen {
 
 
 	public void draw(Canvas c, float delta) {
-		timeLeft -= delta;
-		if (timeLeft < 0) {
-			isDead = true;
-			// return;
-		}
 
 		timeLeftToChange -= delta;
 
