@@ -2,19 +2,22 @@ package com.supercoolnamespace.hackgame;
 
 import java.util.ArrayList;
 
+import android.content.Context;
 import android.graphics.Canvas;
 
 public class SharedResurces {
 
 	private final static int MAX_NBR_SQUARES_TO_DRAW = 4;
 
-	private int currentWorld = World.UpperWorld;
+	public int currentWorld = World.UpperWorld;
 
 	private ArrayList<Integer> removedEntities;
 	private ArrayList<Integer> squaresToDraw;
+	ScoreClass sc;
 
-	public SharedResurces() {
+	public SharedResurces(Context con) {
 		removedEntities = new ArrayList<Integer>();
+		sc = new ScoreClass(con);
 	}
 
 	public void addSquare(int square) {

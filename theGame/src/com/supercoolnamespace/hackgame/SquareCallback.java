@@ -32,8 +32,22 @@ public class SquareCallback implements TweenCallback {
 			
 		}
 		if(arg0 == 8){
-			if(!se.hidden()) {
+			if(se.hidden()) {
 				Log.d("GAME OVER", "XXXX GAME OVER");
+				
+				if (world.share.currentWorld == World.UpperWorld){
+					if (se.getColor() == SquareEntity.BLUE )
+						world.share.sc.higherScore();
+					else 
+						world.share.sc.lowerScore();
+					
+				}else{
+					if (se.getColor() != SquareEntity.BLUE )
+						world.share.sc.higherScore();
+					else 
+						world.share.sc.lowerScore();
+				}
+					
 			}
 			else
 			{

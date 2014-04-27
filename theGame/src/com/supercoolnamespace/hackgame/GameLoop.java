@@ -65,7 +65,7 @@ public class GameLoop extends Screen{
 		Display display = wm.getDefaultDisplay();
 		displaySize = new Point();
 		display.getSize(displaySize);
-		share = new SharedResurces();
+		share = new SharedResurces(context);
 		
 		upperWorld = new UpperWorld(context, displaySize,share);
 		lowerWorld = new LowerWorld(context, displaySize,share);

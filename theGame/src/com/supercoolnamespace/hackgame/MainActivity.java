@@ -41,12 +41,12 @@ public class MainActivity extends Activity {
 	@Override
 	public void onPause() {
 		Log.d(TAG, "pausing mainActivity");
-		super.onPause();
+		super.onDestroy();;
 	}
 
 	@Override
 	public void onStop() {
-		Log.d(TAG, "Stopping mainActivity");
+		Log.d(TAG, "Stopping mainActivi ty");
 		super.onStop();
 	}
     @Override
