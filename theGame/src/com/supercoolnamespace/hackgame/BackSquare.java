@@ -1,6 +1,7 @@
 package com.supercoolnamespace.hackgame;
 
 import android.content.Context;
+import android.util.Log;
 
 public class BackSquare extends SquareEntity {
 
@@ -12,6 +13,7 @@ public class BackSquare extends SquareEntity {
 	}
 	
 	protected  float getRealY() {
+		Log.d("Alfred", "the y: " + y);
 		return whith - (y + fill);
 	}
 

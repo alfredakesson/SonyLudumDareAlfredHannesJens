@@ -162,6 +162,8 @@ public class GameLoop extends Screen{
 		float x = event.getX();
 		Log.d("GAMELOOP", "Is pressed! coords: (" + x + "," + y + ")");
 		upperWorld.handleTouch(x, y);
+		lowerWorld.handleTouch(x, y);
+
 		
 	}
 
