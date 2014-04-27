@@ -29,7 +29,7 @@ public class GameLoop extends Screen{
 
 	public boolean sunUp;
 
-	private final float NIGHT_START_ANGLE = 0.5f;
+	private final float NIGHT_START_ANGLE = 0f;
 	private final float DAWN_TIME = 0.5f;
 
 	private final int SKY_DAY = Color.rgb(135, 206, 235);
@@ -80,6 +80,8 @@ public class GameLoop extends Screen{
 
 		skyboxes.add(new SkyBox(displaySize.x / 2, 0, displaySize.x / 2,
 				displaySize.y, SKY_DAY));
+		
+		skyboxes.get(1).setOpacity(SkyBox.OPACITY_DAY);
 
 		// Create the houses
 		houses = new ArrayList<HouseEntity>();
@@ -120,8 +122,10 @@ public class GameLoop extends Screen{
 		}
 
 		
-		upperWorld.drawAllSquares(c, delta);
-		lowerWorld.drawAllSquares(c, delta);
+		if(sunUp)
+			upperWorld.drawAllSquares(c, delta);
+		else
+			lowerWorld.drawAllSquares(c, delta);
 
 		colorManager.update(delta);
 

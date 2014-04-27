@@ -9,15 +9,24 @@ import android.util.Log;
 
 public class SquareEntity extends Entity {
 	protected float fill = 200;
+	public final static int BLUE = 0;
+	public final static int RED = 1;
 	Bitmap bitmap;
 	private boolean drawTheScreen = true;
 	private static final String TAG = MainActivity.class.getSimpleName();
 
-	public SquareEntity(Context ctx, float x, float y) {
+	public SquareEntity(Context ctx, float x, float y, int color) {
 		super(x, y);
-		bitmap = BitmapFactory.decodeResource(ctx.getResources(),
-				R.drawable.blue_square);
+		if(color == BLUE) {
+			bitmap = BitmapFactory.decodeResource(ctx.getResources(),
+					R.drawable.blue_square);			
+		}
+		else {
+			bitmap = BitmapFactory.decodeResource(ctx.getResources(),
+					R.drawable.red_square);
+		}
 	}
+	
 
 	@Override
 	public void draw(Canvas c) {

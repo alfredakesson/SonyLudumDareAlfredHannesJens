@@ -1,6 +1,7 @@
 package com.supercoolnamespace.hackgame;
 
 import java.util.LinkedList;
+import java.util.Random;
 
 import android.content.Context;
 import android.graphics.Point;
@@ -13,6 +14,7 @@ public class LowerWorld extends World{
 
 	public LowerWorld(Context context, Point displaySize){
 		this.displaySize = displaySize;
+		rand = new Random();
 		Log.d("HOJ", "dispSize y : " + displaySize.y);
 		squareList = new LinkedList<SquareEntity>();
 		Tween.registerAccessor(Entity.class, new EntityTweener());
@@ -25,7 +27,7 @@ public class LowerWorld extends World{
 	@Override
 	public int getStartPosX() {
 		// TODO Auto-generated method stub
-		return 400;
+		return 300;
 	}
 
 	@Override
@@ -36,7 +38,7 @@ public class LowerWorld extends World{
 	
 	
 	public void newSquare() {
-		SquareEntity temp = new BackSquare(context, getStartPosX(), 0, displaySize.y*0.8f );
+		SquareEntity temp = new BackSquare(context, getStartPosX(), 0, displaySize.y*0.8f, SquareEntity.RED);
 		squareList.add(temp);
 		Tween.to(temp, EntityTweener.POSITION_XY, 0.5f).target(getStartPosX(), 200)
 				.repeat(5, 1f).start(manager)

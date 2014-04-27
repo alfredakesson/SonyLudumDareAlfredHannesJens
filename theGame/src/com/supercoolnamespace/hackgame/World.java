@@ -17,7 +17,7 @@ public abstract class World {
 	protected TweenManager manager;
 	protected Context context;
 	protected ScoreClass sclass;
-
+	protected Random rand;
 	public void removeTopSquare() {
 		squareList.removeFirst();
 	}
@@ -27,7 +27,8 @@ public abstract class World {
 	
 	
 	public void newSquare() {
-		SquareEntity temp = new SquareEntity(context, getStartPosX(), 0);
+		int color = rand.nextInt(1000)%2;
+		SquareEntity temp = new SquareEntity(context, getStartPosX(), 0, color);
 		squareList.add(temp);
 		Tween.to(temp, EntityTweener.POSITION_XY, 0.5f).target(getStartPosX(), getStartPosY())
 				.repeat(5, 1.0f).start(manager)
