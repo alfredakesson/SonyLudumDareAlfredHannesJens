@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.RectF;
 
 import com.supercoolnamespace.hackgame.Entity;
+import com.supercoolnamespace.hackgame.Offset;
 
 public abstract class RectEntity extends Entity {
 
@@ -16,7 +17,7 @@ public abstract class RectEntity extends Entity {
 	}
 
 	@Override
-	public abstract void draw(Canvas c);
+	public abstract void draw(Canvas c, Offset theDrawOffset);
 	
 	
 

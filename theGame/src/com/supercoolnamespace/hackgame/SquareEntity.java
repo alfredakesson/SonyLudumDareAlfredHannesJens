@@ -31,9 +31,9 @@ public class SquareEntity extends Entity {
 	
 
 	@Override
-	public void draw(Canvas c) {
+	public void draw(Canvas c, Offset theDrawOffset) {
 		if (drawTheScreen)
-			c.drawBitmap(bitmap, x, getRealY(), null);
+			c.drawBitmap(bitmap, x, getRealY(), null);//x + theDrawOffset.getOffset()
 		Log.d(TAG, "y+fill: " + (getRealY()));
 		// c.drawRect(10,10,10,10, new Paint(10));
 		// Log.d(TAG, "drawing an entity");
