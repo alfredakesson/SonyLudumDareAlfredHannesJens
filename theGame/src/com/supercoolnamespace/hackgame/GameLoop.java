@@ -70,12 +70,12 @@ public class GameLoop extends Screen{
 		Display display = wm.getDefaultDisplay();
 		displaySize = new Point();
 		display.getSize(displaySize);
+		theDrawOffset = new Offset(blueHause, displaySize);
 		share = new SharedResurces(context);
 		
 		upperWorld = new UpperWorld(context, displaySize,share, theDrawOffset);
 		lowerWorld = new LowerWorld(context, displaySize,share, theDrawOffset);
 		
-		theDrawOffset = new Offset(blueHause, displaySize);
 
 		
 		Tween.registerAccessor(Entity.class, new EntityTweener());
@@ -122,17 +122,17 @@ public class GameLoop extends Screen{
 
 		
 		for (SkyBox sb : skyboxes) {
-			sb.draw(c);
+			sb.draw(c, theDrawOffset);
 		}
 
 		drawSun(c);
 		sunEntity.setRotation(sunEntity.getRotation() + 0.3f*delta);///CHANGE THIS VALUE LATER!!!!
-		sunEntity.draw(c);
+		sunEntity.draw(c, theDrawOffset);
 
-		groundEntity.draw(c);
+		groundEntity.draw(c, theDrawOffset);
 
 		for (HouseEntity he : houses) {
-			he.draw(c);
+			he.draw(c, theDrawOffset);
 		}
 
 		
@@ -143,8 +143,8 @@ public class GameLoop extends Screen{
 
 		colorManager.update(delta);
 		
-		blueHause.draw(c);
-		redHause.draw(c);
+		blueHause.draw(c, theDrawOffset);
+		redHause.draw(c, theDrawOffset);
 		//manager.update(delta);
 
 	}

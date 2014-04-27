@@ -8,6 +8,7 @@ import android.graphics.RectF;
 import android.graphics.Shader;
 
 import com.supercoolnamespace.hackgame.Entity;
+import com.supercoolnamespace.hackgame.Offset;
 
 public class GroundEntity extends Entity{
 	
@@ -32,7 +33,7 @@ public class GroundEntity extends Entity{
 	}
 
 	@Override
-	public void draw(Canvas c) {
+	public void draw(Canvas c, Offset theDrawOffset) {
 		
 		
 		c.drawOval(oval, paint);

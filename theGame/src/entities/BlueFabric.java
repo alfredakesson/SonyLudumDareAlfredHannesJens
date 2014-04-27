@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 
 import com.supercoolnamespace.hackgame.Entity;
+import com.supercoolnamespace.hackgame.Offset;
 
 public class BlueFabric extends Entity {
 
@@ -16,7 +17,7 @@ public class BlueFabric extends Entity {
 	}
 
 	@Override
-	public void draw(Canvas c) {
+	public void draw(Canvas c, Offset theDrawOffset) {
 		Paint p = new Paint();
 		p.setColor(Color.GREEN);
 		c.drawRect(x, y, x+offset, y+200, p);

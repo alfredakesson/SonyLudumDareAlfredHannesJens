@@ -13,7 +13,7 @@ public abstract class Entity {
 	}
 	
 
-	public abstract void draw(Canvas c);
+	public abstract void draw(Canvas c, Offset theDrawOffset);
 
 	public void setX(float newX){
 		this.x = newX;
