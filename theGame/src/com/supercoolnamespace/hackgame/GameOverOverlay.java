@@ -13,11 +13,7 @@ public class GameOverOverlay extends Screen {
 	
 	private final int STATE_SECOND = 2;
 
-	private float timeLeft = 3f;
-
 	private Paint paint;
-
-	private String[] strings = { "One World", "Connected", "Yes" };
 
 	public boolean isDead = false;
 
@@ -65,6 +61,7 @@ public class GameOverOverlay extends Screen {
 
 				timeLeftToChange = 2f;
 				computeOffset(playAgainString);
+				currentState = STATE_SECOND;
 	
 		}
 	

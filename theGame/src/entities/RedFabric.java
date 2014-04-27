@@ -19,6 +19,7 @@ public class RedFabric extends Entity {
 		Paint p = new Paint();
 		p.setColor(Color.rgb(20, 20, 20));
 		c.drawRect(x + theDrawOffset.getOffset(), y, x+300 + theDrawOffset.getOffset(), y+200, p);
+
 	}
 
 }
