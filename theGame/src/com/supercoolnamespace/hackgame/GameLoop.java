@@ -83,7 +83,7 @@ public class GameLoop extends Screen{
 		
 
 		sunEntity = new SunEntity(displaySize.x / 2, displaySize.y / 2);
-		groundEntity = new GroundEntity(displaySize.x / 2, 0, 50, 3000,
+		groundEntity = new GroundEntity(displaySize.x / 2, 0, 100, 2000,
 				displaySize.y);
 		sunUp = true;
 

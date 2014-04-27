@@ -26,7 +26,7 @@ public class GroundEntity extends Entity{
 		
 		paint = new Paint();
 		
-		paint.setColor(Color.rgb(120, 72, 0));
+		paint.setColor(Color.rgb(222, 156, 28));
 		
 		//paint.setShader(new RadialGradient(0, 0, height/3, Color.BLACK, Color.rgb(179, 97, 39), Shader.TileMode.CLAMP));
 	}
