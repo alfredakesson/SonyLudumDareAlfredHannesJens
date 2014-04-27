@@ -41,8 +41,8 @@ public class LowerWorld extends World{
 	public void newSquare() {
 		SquareEntity temp = new BackSquare(context, getStartPosX(), 0, displaySize.y*0.9f, SquareEntity.RED);
 		squareList.add(temp);
-		Tween.to(temp, EntityTweener.POSITION_XY, 0.5f).target(getStartPosX(), 200)
-				.repeat(5, 1f).start(manager)
+		Tween.to(temp, EntityTweener.POSITION_XY, 0.1f).target(getStartPosX(), 200)
+				.repeat(5, 0.3f).start(manager)
 				.setCallback(new SquareCallback(temp, this))
 				.setCallbackTriggers(TweenCallback.ANY);
 	}

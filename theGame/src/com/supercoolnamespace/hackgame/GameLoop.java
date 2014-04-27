@@ -121,7 +121,7 @@ public class GameLoop extends Screen{
 		}
 
 		drawSun(c);
-		sunEntity.setRotation(sunEntity.getRotation() + delta*2);///CHANGE THIS VALUE LATER!!!!
+		sunEntity.setRotation(sunEntity.getRotation() + delta);///CHANGE THIS VALUE LATER!!!!
 		sunEntity.draw(c);
 
 		groundEntity.draw(c);

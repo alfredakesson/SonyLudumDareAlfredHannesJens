@@ -34,7 +34,6 @@ public class SquareCallback implements TweenCallback {
 		if(arg0 == 8){
 			if(!se.hidden()) {
 				Log.d("GAME OVER", "XXXX GAME OVER");
-				
 			}
 			else
 			{
