@@ -17,7 +17,7 @@ public class IntroScreen extends Screen {
 
 	private Paint paint;
 
-	private String[] strings = { "One World", "Connected", "Yes" };
+	private String[] strings = { "One World", "Connected", "By Surface" };
 
 	public boolean isDead = false;
 
@@ -50,11 +50,6 @@ public class IntroScreen extends Screen {
 
 
 	public void draw(Canvas c, float delta) {
-		timeLeft -= delta;
-		if (timeLeft < 0) {
-			isDead = true;
-			// return;
-		}
 
 		timeLeftToChange -= delta;
 
