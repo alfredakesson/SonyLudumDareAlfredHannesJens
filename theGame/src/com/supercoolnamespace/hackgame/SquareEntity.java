@@ -45,24 +45,21 @@ public class SquareEntity extends Entity {
 		int yHit = hitPt.y;
 		int xHit = hitPt.x;
 		
-		if(xHit < x) {
-			Log.d(TAG, "is pressed? 1");			
+		float realY = y + fill;
+		
+		if(xHit < x) {			
 			return false;
 		}
 		else if(xHit > x + height) {
-			Log.d(TAG, "is pressed? 2");
 			return false;
 		}
-		else if(yHit < y) {
-			Log.d(TAG, "is pressed? 3");			
+		else if(yHit < realY) {
 			return false;
 		}
-		else if(yHit > y + width) {
-			Log.d(TAG, "is pressed? 4");
+		else if(yHit > realY + width) {
 			return false;
 		}
 		else
-			Log.d(TAG, "is pressed? TRUE");
 			return true;
 	}
 }

@@ -62,6 +62,7 @@ public abstract class World {
 		for(SquareEntity sq : squareList) {
 			if(sq.isPressed(new Point((int)x, (int)y))) {
 				Log.d("world", "Is pressed!");
+				sq.hide();
 			}
 		}
 		
