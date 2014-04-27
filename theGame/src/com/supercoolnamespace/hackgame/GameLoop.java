@@ -144,8 +144,6 @@ public class GameLoop extends Screen{
 
 	}
 
-
-
 	private void drawSun(Canvas c) {
 		if (!sunUp && Math.sin(sunEntity.rotation + NIGHT_START_ANGLE) > 0) {
 

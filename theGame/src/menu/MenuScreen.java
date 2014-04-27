@@ -1,5 +1,7 @@
 package menu;
 
+import java.util.ArrayList;
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -19,6 +21,7 @@ public class MenuScreen extends Screen {
 
 	private float xOffset, xSize;
 	
+	private ArrayList<MenuButton> buttons;
 
 	public MenuScreen(Context context, MainThread callback) {
 		super(context, callback);
@@ -27,9 +30,9 @@ public class MenuScreen extends Screen {
 		backgroundPaint = new Paint();
 		backgroundPaint.setColor(Color.BLACK);
 
-		xOffset = (float) (0.9 * displaySize.x);
+		xOffset = (float) (0.9 * displaySize.y);
 
-		xSize = displaySize.x - 2 * xOffset;
+		xSize = displaySize.y - 2 * xOffset;
 		
 		
 		this.callback = callback;
@@ -37,6 +40,15 @@ public class MenuScreen extends Screen {
 		textPaint = new Paint();
 		textPaint.setTextSize(50);
 		textPaint.setColor(Color.WHITE);
+		
+		buttons = new ArrayList<MenuButton>();
+		
+		for (int i = 0; i < 3; i++) {
+			int top = 100 + 400 * i;
+			
+			buttons.add(new MenuButton(-30, -30, (int)xSize, 300, "starta spel", paint));
+			//c.drawText("MUHUHU", xOffset, top, textPaint);
+		}
 		
 	}
 
@@ -53,10 +65,10 @@ public class MenuScreen extends Screen {
 	public void draw(Canvas c, float delta) {
 		c.drawRect(0, 0, c.getWidth(), c.getHeight(), backgroundPaint);
 
-		for (int i = 0; i < 3; i++) {
-			int top = 100 + 200 * i;
-			c.drawRect(xOffset, top, xOffset + xSize, top - 100, paint);
-			c.drawText("MUHUHU", xOffset, top, textPaint);
+
+		
+		for(MenuButton mb : buttons){
+			mb.draw(c);
 		}
 
 	}
