@@ -1,6 +1,7 @@
 package com.supercoolnamespace.hackgame;
 
 import java.util.LinkedList;
+import java.util.Random;
 
 import android.content.Context;
 import android.graphics.Point;
@@ -11,6 +12,7 @@ public class UpperWorld extends World{
 
 	public UpperWorld(Context context, Point displaySize){
 		this.displaySize = displaySize;
+		rand = new Random();
 		squareList = new LinkedList<SquareEntity>();
 		Tween.registerAccessor(Entity.class, new EntityTweener());
 		this.context = context;

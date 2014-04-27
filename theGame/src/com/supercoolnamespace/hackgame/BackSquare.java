@@ -7,8 +7,8 @@ public class BackSquare extends SquareEntity {
 
 	private float whith;
 
-	public BackSquare(Context ctx, float x, float y, float whith) {
-		super(ctx, x, y);
+	public BackSquare(Context ctx, float x, float y, float whith, int color) {
+		super(ctx, x, y, color);
 		this.whith= whith;
 	}
 	
