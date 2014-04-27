@@ -16,13 +16,20 @@ public abstract class World {
 	protected LinkedList<SquareEntity> squareList;
 	protected TweenManager manager;
 	protected Context context;
+	protected ScoreClass sclass;
 	protected Random rand;
+	protected SharedResurces share;
+
 	public void removeTopSquare() {
 		squareList.removeFirst();
 	}
 	
 	public abstract int getStartPosX();
 	public abstract int getStartPosY();
+	
+	public World(SharedResurces share){
+		this.share = share;
+	}
 	
 	
 	public void newSquare() {
@@ -64,7 +71,8 @@ public abstract class World {
 			if(sq.isPressed(new Point((int)x, (int)y))) {
 				Log.d("world", "Is pressed!");
 				sq.hide();
-				(new ScoreClass(context)).setScore(5);
+				sclass.lowerScore();
+				
 			}
 		}
 		

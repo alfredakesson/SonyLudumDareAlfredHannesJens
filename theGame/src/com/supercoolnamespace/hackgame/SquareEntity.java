@@ -45,6 +45,10 @@ public class SquareEntity extends Entity {
 		drawTheScreen = false;
 
 	}
+	
+	public boolean hidden(){
+		return drawTheScreen;
+	}
 
 	public boolean isPressed(Point hitPt) {
 		

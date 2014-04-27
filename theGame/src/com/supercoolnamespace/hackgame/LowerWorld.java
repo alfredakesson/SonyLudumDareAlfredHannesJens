@@ -12,7 +12,8 @@ import aurelienribon.tweenengine.TweenManager;
 
 public class LowerWorld extends World{
 
-	public LowerWorld(Context context, Point displaySize){
+	public LowerWorld(Context context, Point displaySize, SharedResurces share){
+		super(share);
 		this.displaySize = displaySize;
 		rand = new Random();
 		Log.d("HOJ", "dispSize y : " + displaySize.y);
@@ -21,6 +22,7 @@ public class LowerWorld extends World{
 		this.context = context;
 		manager = new TweenManager();
 		newSquare();
+		sclass = new ScoreClass(context);
 	}
 
 	@Override

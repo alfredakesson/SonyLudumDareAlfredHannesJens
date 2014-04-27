@@ -59,9 +59,10 @@ public class GameLoop extends Screen{
 		Display display = wm.getDefaultDisplay();
 		displaySize = new Point();
 		display.getSize(displaySize);
-
-		upperWorld = new UpperWorld(context, displaySize);
-		lowerWorld = new LowerWorld(context, displaySize);
+		SharedResurces share = new SharedResurces();
+		
+		upperWorld = new UpperWorld(context, displaySize,share);
+		lowerWorld = new LowerWorld(context, displaySize,share);
 		
 		Tween.registerAccessor(Entity.class, new EntityTweener());
 
@@ -161,6 +162,7 @@ public class GameLoop extends Screen{
 	public void touch(MotionEvent event) {
 		float y = event.getY();
 		float x = event.getX();
+		Log.d("GAMELOP", "screen: " + displaySize.x + " " + displaySize.y );
 		Log.d("GAMELOOP", "Is pressed! coords: (" + x + "," + y + ")");
 		upperWorld.handleTouch(x, y);
 		lowerWorld.handleTouch(x, y);
