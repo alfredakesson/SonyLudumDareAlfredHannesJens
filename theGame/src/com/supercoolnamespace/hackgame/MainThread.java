@@ -3,6 +3,7 @@ package com.supercoolnamespace.hackgame;
 import intro.IntroScreen;
 
 import java.util.Calendar;
+import java.util.Random;
 
 import menu.MenuScreen;
 import android.content.Context;
@@ -10,6 +11,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Movie;
 import android.graphics.Paint;
+import android.media.MediaPlayer;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -31,6 +33,10 @@ public class MainThread extends Thread {
 	private Screen currentScreen;
 
 	private Context context;
+	
+	MediaPlayer sound1, sound2, sound3;
+	
+	private Random rand;
 
 	public MainThread(SurfaceHolder surfaceHolder, MainGamePanel gamePanel) {
 		super();
@@ -47,6 +53,14 @@ public class MainThread extends Thread {
 		currentScreen = new MenuScreen(gamePanel.getContext(), this);
 
 		context = gamePanel.getContext();
+		
+		sound1 = MediaPlayer.create(gamePanel.getContext(), R.raw.click1);
+		
+		sound2 = MediaPlayer.create(gamePanel.getContext(), R.raw.click2);
+		
+		sound3 = MediaPlayer.create(gamePanel.getContext(), R.raw.click3);
+		
+		rand = new Random();
 
 	}
 
@@ -106,6 +120,21 @@ public class MainThread extends Thread {
 	}
 
 	public void touch(MotionEvent event) {
+		switch (rand.nextInt(3)) {
+		case 0:
+			sound1.start();
+			break;
+		case 1:
+			sound2.start();
+			break;
+		case 2:
+			sound3.start();
+			break;
+		default:
+			break;
+		}
+		
+		
 		if (currentScreen == null) {
 			return;
 		}
