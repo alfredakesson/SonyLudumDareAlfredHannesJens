@@ -12,15 +12,18 @@ import android.view.MotionEvent;
 import android.view.WindowManager;
 import aurelienribon.tweenengine.Tween;
 import aurelienribon.tweenengine.TweenManager;
+import entities.BlueFabric;
 import entities.GroundEntity;
 import entities.HouseEntity;
+import entities.RedFabric;
 import entities.SkyBox;
 import entities.SunEntity;
 
 public class GameLoop extends Screen{
 
 	private static final String TAG = MainActivity.class.getSimpleName();
-
+	
+	private Entity blueHause;
 	
 	private World upperWorld;
 	private World lowerWorld;
@@ -47,6 +50,8 @@ public class GameLoop extends Screen{
 
 
 	private TweenManager colorManager;
+
+	private RedFabric redHause;
 
 	
 
@@ -98,6 +103,8 @@ public class GameLoop extends Screen{
 
 		//houseEntity = new entities.HouseEntity(context, 100, 100, 50, 50);
 		colorManager = new TweenManager();
+		blueHause = new BlueFabric(550,1400);
+		redHause = new RedFabric(220, 200);
 
 
 		
@@ -114,7 +121,7 @@ public class GameLoop extends Screen{
 		}
 
 		drawSun(c);
-		sunEntity.setRotation(sunEntity.getRotation() + delta*2);///CHANGE THIS VALUE LATER!!!!
+		sunEntity.setRotation(sunEntity.getRotation() + 0.3f*delta);///CHANGE THIS VALUE LATER!!!!
 		sunEntity.draw(c);
 
 		groundEntity.draw(c);
@@ -130,12 +137,12 @@ public class GameLoop extends Screen{
 			lowerWorld.drawAllSquares(c, delta);
 
 		colorManager.update(delta);
-
+		
+		blueHause.draw(c);
+		redHause.draw(c);
 		//manager.update(delta);
 
 	}
-
-
 
 	private void drawSun(Canvas c) {
 		if (!sunUp && Math.sin(sunEntity.rotation + NIGHT_START_ANGLE) > 0) {
@@ -146,7 +153,7 @@ public class GameLoop extends Screen{
 					.target(SkyBox.OPACITY_NIGHT).start(colorManager);
 			sunUp = true;
 			upperWorld = new UpperWorld(context, displaySize,share);
-			share.drawRemovedSquares(c);
+			share.updateWorld(c);
 		}
 
 		if (sunUp && Math.sin(sunEntity.rotation + NIGHT_START_ANGLE) < 0) {
@@ -157,7 +164,7 @@ public class GameLoop extends Screen{
 
 			sunUp = false;
 			lowerWorld = new LowerWorld(context, displaySize,share);
-			share.drawRemovedSquares(c);
+			share.updateWorld(c);;
 		}
 	
 		

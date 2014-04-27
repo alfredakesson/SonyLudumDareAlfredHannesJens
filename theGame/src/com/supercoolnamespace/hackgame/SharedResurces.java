@@ -5,38 +5,42 @@ import java.util.ArrayList;
 import android.graphics.Canvas;
 
 public class SharedResurces {
-	
+
+	private final static int MAX_NBR_SQUARES_TO_DRAW = 4;
+
+	private int currentWorld = World.UpperWorld;
+
 	private ArrayList<Integer> removedEntities;
-	
+	private ArrayList<Integer> squaresToDraw;
+
 	public SharedResurces() {
 		removedEntities = new ArrayList<Integer>();
 	}
-	
+
 	public void addSquare(int square) {
 		removedEntities.add(square);
 	}
 
-	public void drawRemovedSquares(Canvas c) {
-		
-		// Draw the squares removed during the time on the other side of the mud
-		
-		for(int s = 0; s < removedEntities.size(); s++) {
-			int square = removedEntities.get(0);
-			
-			switch (square) {
-			case SquareEntity.BLUE:
-				break;
-			case SquareEntity.RED:
-				break;
-			default:
-				// do nothing;
-				break;
-			}
-			
+	public void updateWorld(Canvas c) {
+
+		if (currentWorld == World.UpperWorld) {
+			currentWorld = World.LowerWorld;
+		} else if (currentWorld == World.LowerWorld) {
+			currentWorld = World.UpperWorld;
 		}
-		
-		
+
+		squaresToDraw = removedEntities;
 		removedEntities = new ArrayList<Integer>();
+
+	}
+
+	public int getColor() {
+		if(squaresToDraw == null || squaresToDraw.size() < 1) {
+			return -1;
+		}
+		else {
+			return squaresToDraw.remove(0);
+		}
 	}
 
 }

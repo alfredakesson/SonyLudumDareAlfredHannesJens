@@ -34,15 +34,16 @@ public class LowerWorld extends World{
 	@Override
 	public int getStartPosY() {
 		// TODO Auto-generated method stub
-		return displaySize.y - 200;
+		return displaySize.y-200;
 	}
 	
 	
 	public void newSquare() {
-		SquareEntity temp = new BackSquare(context, getStartPosX(), 0, displaySize.y*0.8f, SquareEntity.RED);
+		int color = getColorForSquare();
+		SquareEntity temp = new BackSquare(context, getStartPosX(), 0, displaySize.y*0.9f, color);
 		squareList.add(temp);
-		Tween.to(temp, EntityTweener.POSITION_XY, 0.5f).target(getStartPosX(), 200)
-				.repeat(5, 1f).start(manager)
+		Tween.to(temp, EntityTweener.POSITION_XY, 0.1f).target(getStartPosX(), 200)
+				.repeat(5, 0.3f).start(manager)
 				.setCallback(new SquareCallback(temp, this))
 				.setCallbackTriggers(TweenCallback.ANY);
 	}
