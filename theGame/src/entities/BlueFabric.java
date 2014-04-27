@@ -20,7 +20,7 @@ public class BlueFabric extends Entity {
 	public void draw(Canvas c, Offset theDrawOffset) {
 		Paint p = new Paint();
 		p.setColor(Color.rgb(20, 20, 20));
-		c.drawRect(x, y, x+offset, y+200, p);
+		c.drawRect(x + theDrawOffset.getOffset(), y, x+offset  + theDrawOffset.getOffset(), y+200, p);
 		p = new Paint();
 		//p.setColor(Color.BLUE);
 		//c.drawRect(x+120, y+50, x+260, y+150, p);

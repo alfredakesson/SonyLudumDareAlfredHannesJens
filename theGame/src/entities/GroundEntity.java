@@ -35,9 +35,9 @@ public class GroundEntity extends Entity{
 	@Override
 	public void draw(Canvas c, Offset theDrawOffset) {
 		
-		
+		oval.offset(theDrawOffset.getOffset(), 0);
 		c.drawOval(oval, paint);
-		
+		oval.offset(-theDrawOffset.getOffset(), 0);
 	}
 	
 
