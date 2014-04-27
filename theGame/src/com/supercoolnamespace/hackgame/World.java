@@ -18,7 +18,6 @@ public abstract class World {
 	protected LinkedList<SquareEntity> squareList;
 	protected TweenManager manager;
 	protected Context context;
-	protected ScoreClass sclass;
 	protected Random rand;
 	protected SharedResurces share;
 
@@ -86,7 +85,6 @@ public abstract class World {
 				share.addSquare(sq.getColor());
 				Log.d("world", "Is pressed!");
 				sq.hide();
-				sclass.lowerScore();
 				break;
 				
 			}
