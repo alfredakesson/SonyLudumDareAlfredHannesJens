@@ -18,12 +18,12 @@ public class Offset {
 		multiplier = tot / nbrStep; 
 	}
 	
-	public void increment(){
-		groundLevel++;
+	public void increment(int value){
+		groundLevel += value;
 	}
 	
-	public void decrease(){
-		groundLevel--;
+	public void decrease(int value){
+		groundLevel += value;
 	}
 	
 	public float getOffset() {

@@ -26,14 +26,14 @@ public class ScoreClass {
 		setScore(0);
 	}
 	
-	public void lowerScore(){
+	public void lowerScore(int i){
 		currentScore++;
 		setScore(currentBalance - 1);
 	}
 	
-	public void higherScore(){
+	public void higherScore(int i){
 		currentScore++;
-		setScore(currentBalance + 1);
+		setScore(currentBalance + i);
 	}
 	
 	
