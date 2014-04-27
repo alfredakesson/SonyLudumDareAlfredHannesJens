@@ -5,7 +5,6 @@ import intro.IntroScreen;
 import java.util.Calendar;
 
 import menu.MenuScreen;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -49,6 +48,7 @@ public class MainThread extends Thread {
 		currentScreen = new MenuScreen(gamePanel.getContext(), this);
 		
 		context = gamePanel.getContext();
+		(new ScoreClass(context)).setScore(4);
 
 	}
 

@@ -8,7 +8,7 @@ import android.graphics.Point;
 import android.util.Log;
 
 public class SquareEntity extends Entity {
-	private float fill = 200;
+	protected float fill = 200;
 	Bitmap bitmap;
 	private boolean drawTheScreen = true;
 	private static final String TAG = MainActivity.class.getSimpleName();
@@ -22,8 +22,8 @@ public class SquareEntity extends Entity {
 	@Override
 	public void draw(Canvas c) {
 		if (drawTheScreen)
-			c.drawBitmap(bitmap, x, fill + y, null);
-		Log.d(TAG, "y+fill: " + (fill + y));
+			c.drawBitmap(bitmap, x, getRealY(), null);
+		Log.d(TAG, "y+fill: " + (getRealY()));
 		// c.drawRect(10,10,10,10, new Paint(10));
 		// Log.d(TAG, "drawing an entity");
 	}
@@ -45,7 +45,7 @@ public class SquareEntity extends Entity {
 		int yHit = hitPt.y;
 		int xHit = hitPt.x;
 		
-		float realY = y + fill;
+		float realY = getRealY();
 		
 		if(xHit < x) {			
 			return false;
@@ -61,5 +61,9 @@ public class SquareEntity extends Entity {
 		}
 		else
 			return true;
+	}
+
+	protected  float getRealY() {
+		return y + fill;
 	}
 }
