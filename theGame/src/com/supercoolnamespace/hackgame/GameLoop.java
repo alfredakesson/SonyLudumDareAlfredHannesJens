@@ -23,6 +23,7 @@ public class GameLoop extends Screen{
 
 	private static final String TAG = MainActivity.class.getSimpleName();
 	
+	private Offset theDrawOffset;
 	private Entity blueHause;
 	
 	private World upperWorld;
@@ -69,6 +70,10 @@ public class GameLoop extends Screen{
 		
 		upperWorld = new UpperWorld(context, displaySize,share);
 		lowerWorld = new LowerWorld(context, displaySize,share);
+		
+		
+		theDrawOffset = new Offset();
+		
 		
 		Tween.registerAccessor(Entity.class, new EntityTweener());
 
