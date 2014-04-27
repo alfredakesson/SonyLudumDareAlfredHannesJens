@@ -10,8 +10,8 @@ import aurelienribon.tweenengine.TweenManager;
 
 public class UpperWorld extends World{
 
-	public UpperWorld(Context context, Point displaySize,SharedResurces share){
-		super(share);
+	public UpperWorld(Context context, Point displaySize,SharedResurces share, Offset theDrawOffset){
+		super(share, theDrawOffset);
 			
 		this.displaySize = displaySize;
 		rand = new Random();
